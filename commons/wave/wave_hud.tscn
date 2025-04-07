@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://tjoqs1fna1hk"]
+
+[ext_resource type="Script" uid="uid://2ph7g3btuts8" path="res://commons/wave/wave_hud.gd" id="2_aby70"]
+
+[node name="Wave" type="Control" node_paths=PackedStringArray("wave_counter", "current_enemies_counter")]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 0
+script = ExtResource("2_aby70")
+wave_counter = NodePath("MarginContainer/HBoxContainer/WaveCounter")
+current_enemies_counter = NodePath("MarginContainer/HBoxContainer/KillsCounter")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaveCounter" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+horizontal_alignment = 1
+
+[node name="KillsCounter" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+horizontal_alignment = 1

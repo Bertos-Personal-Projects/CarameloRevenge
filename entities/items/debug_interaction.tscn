@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5l75xhcfp7mw"]
+
+[ext_resource type="Script" uid="uid://ov4g35dm53fa" path="res://commons/interaction/debug_interaction.gd" id="1_m64bl"]
+[ext_resource type="Script" uid="uid://c875hyyvr4rwb" path="res://commons/interaction/interactor_area2D.gd" id="2_hi8fh"]
+[ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="3_wb7uj"]
+[ext_resource type="Resource" uid="uid://d21k0p062tnt3" path="res://entities/items/consumable/debug_consumable_data.tres" id="4_gmy7u"]
+[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/equip/debug_equip_data.tres" id="5_5bp51"]
+[ext_resource type="Script" uid="uid://c0kjb7i70r70m" path="res://commons/combat/health.gd" id="6_fnrqy"]
+[ext_resource type="Script" uid="uid://b7r1ud50vcvlf" path="res://entities/equip/equip_manager.gd" id="7_hi8fh"]
+[ext_resource type="Script" uid="uid://db0meocykw3h1" path="res://entities/equip/equip_info.gd" id="8_wb7uj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sv0jf"]
+
+[sub_resource type="Resource" id="Resource_gmy7u"]
+script = ExtResource("8_wb7uj")
+id = "primary"
+parent = NodePath("../InteractorArea2D")
+metadata/_custom_type_script = "uid://db0meocykw3h1"
+
+[node name="DebugItem" type="Node2D" node_paths=PackedStringArray("interactor")]
+script = ExtResource("1_m64bl")
+interactor = NodePath("InteractorArea2D")
+
+[node name="InteractorArea2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("2_hi8fh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorArea2D"]
+shape = SubResource("CircleShape2D_sv0jf")
+
+[node name="Item" parent="." instance=ExtResource("3_wb7uj")]
+modulate = Color(0.380392, 1, 0.309804, 1)
+position = Vector2(64, 0)
+itemData = ExtResource("4_gmy7u")
+
+[node name="Item2" parent="." instance=ExtResource("3_wb7uj")]
+position = Vector2(-90, 0)
+itemData = ExtResource("5_5bp51")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("6_fnrqy")
+current_health = 5
+metadata/_custom_type_script = "uid://c0kjb7i70r70m"
+
+[node name="EquipManager" type="Node" parent="."]
+script = ExtResource("7_hi8fh")
+slotInfoList = Array[ExtResource("8_wb7uj")]([SubResource("Resource_gmy7u")])
+metadata/_custom_type_script = "uid://b7r1ud50vcvlf"

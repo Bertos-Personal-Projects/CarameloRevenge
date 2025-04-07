@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqg1tuwgusvc2"]
+
+[ext_resource type="Script" uid="uid://clpsq7lbl8ecw" path="res://entities/items/item.gd" id="1_bbs1f"]
+[ext_resource type="Texture2D" uid="uid://jomsrkshrqe" path="res://entities/items/RPG Weapons Dark Outline.png" id="2_h1ip2"]
+[ext_resource type="Script" uid="uid://k8vlwn4wl28x" path="res://commons/interaction/interaction_area2D.gd" id="4_v10qo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3fek"]
+atlas = ExtResource("2_h1ip2")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43i6i"]
+radius = 6.66667
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_bbs1f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_l3fek")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("4_v10qo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_43i6i")
+debug_color = Color(0.85184, 0.371233, 7.70092e-07, 0.42)

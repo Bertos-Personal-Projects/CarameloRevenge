@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cikh4jfmtidtx"]
+
+[ext_resource type="Script" uid="uid://cxnw10jsf2jmc" path="res://commons/combat/debug_combat_scene.gd" id="1_0raar"]
+[ext_resource type="Texture2D" uid="uid://c8kgtqq53ume5" path="res://icon.svg" id="1_aw3t3"]
+[ext_resource type="Script" uid="uid://c0kjb7i70r70m" path="res://commons/combat/health.gd" id="2_f1wi3"]
+[ext_resource type="Script" uid="uid://dxv4k5q6ja4uy" path="res://commons/combat/melee_attack.gd" id="3_3384q"]
+[ext_resource type="Script" uid="uid://dljq56ulgtg2f" path="res://commons/combat/hitbox.gd" id="4_6r27w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nd2wd"]
+radius = 64.2806
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1wi3"]
+radius = 32.0
+
+[node name="DebugCombatScene" type="Node2D" node_paths=PackedStringArray("meleeAttack")]
+script = ExtResource("1_0raar")
+meleeAttack = NodePath("MeleeAttack")
+
+[node name="CombatDummy" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CombatDummy"]
+texture = ExtResource("1_aw3t3")
+
+[node name="Health" type="Node" parent="CombatDummy"]
+script = ExtResource("2_f1wi3")
+
+[node name="Hitbox2D" type="Area2D" parent="CombatDummy" node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("4_6r27w")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatDummy/Hitbox2D"]
+shape = SubResource("CircleShape2D_nd2wd")
+debug_color = Color(1, 0.00709226, 0.0510488, 0.42)
+
+[node name="MeleeAttack" type="Node2D" parent="."]
+script = ExtResource("3_3384q")
+
+[node name="Area2D" type="Area2D" parent="MeleeAttack"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttack/Area2D"]
+shape = SubResource("CircleShape2D_f1wi3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
