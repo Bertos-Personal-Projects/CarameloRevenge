@@ -14,7 +14,7 @@ func _on_interacted(who:Node2D):
 	if itemData is ItemConsumableData && who.has_node("Health"):
 		var health = who.get_node("Health") as Health
 		health.heal(itemData.heal)
-	elif itemData is ItemEquipData && who.has_node("EquipManager"):
+	elif itemData is ItemWeaponData && who.has_node("EquipManager"):
 		var equipManager = who.get_node("EquipManager") as EquipManager
 		equipManager.equip('primary',itemData)
 	queue_free()	

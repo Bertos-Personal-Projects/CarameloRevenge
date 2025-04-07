@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://crx8mr58b0qq4" path="res://entities/player/movement_input.gd" id="3_bectd"]
 [ext_resource type="Script" uid="uid://8gi7p5jmty1f" path="res://entities/player/animation_player.gd" id="4_wvtmh"]
 [ext_resource type="Script" uid="uid://dn7vuy63g0k1v" path="res://entities/player/aim_pivot.gd" id="5_7thud"]
+[ext_resource type="Script" uid="uid://csee2fwnnhut7" path="res://entities/player/equip_manager.gd" id="7_26q78"]
 [ext_resource type="Script" uid="uid://crnwlasf2kn54" path="res://entities/player/interactor_area_2d.gd" id="7_j3ovn"]
-[ext_resource type="Script" uid="uid://b7r1ud50vcvlf" path="res://entities/equip/equip_manager.gd" id="7_qiwj3"]
 [ext_resource type="Script" uid="uid://db0meocykw3h1" path="res://entities/equip/equip_info.gd" id="8_26q78"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
@@ -133,5 +133,5 @@ shape = SubResource("CircleShape2D_dvkp0")
 debug_color = Color(0, 0.823529, 0.431373, 0.419608)
 
 [node name="EquipManager" type="Node" parent="."]
-script = ExtResource("7_qiwj3")
+script = ExtResource("7_26q78")
 slotInfoList = Array[ExtResource("8_26q78")]([SubResource("Resource_bectd")])

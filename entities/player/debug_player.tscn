@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0i7tnuk4loy2"]
 
 [ext_resource type="PackedScene" uid="uid://5v15ywv7qutf" path="res://entities/player/player.tscn" id="1_5xad3"]
-[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/equip/debug_equip_data.tres" id="3_4erlq"]
+[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/debug_weapon_data.tres" id="3_4erlq"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="5_dvkp0"]
 
 [node name="DebugPlayer" type="Node2D"]

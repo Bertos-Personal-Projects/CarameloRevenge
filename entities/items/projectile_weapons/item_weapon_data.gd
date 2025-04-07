@@ -1,4 +1,4 @@
-class_name ItemEquipData
+class_name ItemWeaponData
 extends ItemData
 
 @export var uid:String = ""

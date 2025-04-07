@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://5jocor68mxln"]
+
+[ext_resource type="Script" uid="uid://dj0momb3kxqca" path="res://entities/items/projectile/projectile.gd" id="1_rmj8f"]
+[ext_resource type="Texture2D" uid="uid://jomsrkshrqe" path="res://entities/items/RPG Weapons Dark Outline.png" id="2_0txw0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bp51"]
+size = Vector2(21.5, 5.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnrqy"]
+atlas = ExtResource("2_0txw0")
+region = Rect2(224, 128, 16, 16)
+
+[node name="Projectile" type="CharacterBody2D" node_paths=PackedStringArray("area2D")]
+script = ExtResource("1_rmj8f")
+area2D = NodePath("Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5bp51")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.785397
+texture = SubResource("AtlasTexture_fnrqy")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5bp51")
+debug_color = Color(0.991983, 0.0843476, 5.77569e-07, 0.42)
