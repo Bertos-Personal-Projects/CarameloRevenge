@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="ItemConsumableData" load_steps=3 format=3 uid="uid://d21k0p062tnt3"]
+[gd_resource type="Resource" script_class="ItemConsumableData" load_steps=4 format=3 uid="uid://d21k0p062tnt3"]
 
+[ext_resource type="Texture2D" uid="uid://jomsrkshrqe" path="res://entities/items/RPG Weapons Dark Outline.png" id="1_7oheh"]
 [ext_resource type="Script" uid="uid://cy5qsqamoeuwi" path="res://entities/items/consumables/item_consumable_data.gd" id="1_416eb"]
-[ext_resource type="Texture2D" uid="uid://c8kgtqq53ume5" path="res://icon.svg" id="1_xvncl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wubgs"]
+atlas = ExtResource("1_7oheh")
+region = Rect2(400, 144, 16, 16)
 
 [resource]
 script = ExtResource("1_416eb")
 heal = 2
 id = "debug_consumable"
 name = "Debug Consumable"
-icon = ExtResource("1_xvncl")
+icon = SubResource("AtlasTexture_wubgs")
 metadata/_custom_type_script = "uid://cy5qsqamoeuwi"

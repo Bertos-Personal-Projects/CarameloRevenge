@@ -11,6 +11,7 @@ region = Rect2(224, 0, 16, 16)
 script = ExtResource("2_3hdaa")
 uid = "uid://b04j5u8fr081r"
 damage = 3
+cooldown = 1.0
 id = "debug_equip"
 name = "Debug Equip"
 icon = SubResource("AtlasTexture_7ywyr")

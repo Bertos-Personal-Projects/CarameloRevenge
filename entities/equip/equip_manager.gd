@@ -1,7 +1,15 @@
 class_name EquipManager
 extends Node
 
+@export_flags("Layer 1", "Layer 2", "Layer 3", "Layer 4")  
+var custom_collision_mask: int = 1
 @export var slotInfoList:Array[slotInfo]
+
+
+func _ready() -> void:
+	for slot in  slotInfoList:
+		if slot.item != null:
+			equip(slot.id,slot.item)
 
 func use(slotID:String):
 	var slot = _getSlot(slotID)
@@ -24,7 +32,7 @@ func _getSlot(slotID:String) -> slotInfo:
 func equip(slotID:String, item:ItemWeaponData):
 	var slot = _getSlot(slotID)
 	if slot != null:
-		if slot.item != null:
+		if slot.instance != null:
 			unequip(slot.id) #if so, unequip the current item
 		#Set the new item in the slot 
 		slot.item = item
@@ -32,6 +40,8 @@ func equip(slotID:String, item:ItemWeaponData):
 		#and add it as child on pivot
 		var instance = load(item.uid).instantiate()
 		instance.damage = item.damage
+		instance.cooldown = item.cooldown
+		instance.collisionMask = custom_collision_mask
 		get_node(slot.parent).add_child.call_deferred(instance)
 		slot.instance = instance
 		print(get_parent().name+" has equipped "+item.name)

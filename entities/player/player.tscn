@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://5v15ywv7qutf"]
+[gd_scene load_steps=19 format=3 uid="uid://5v15ywv7qutf"]
 
 [ext_resource type="Script" uid="uid://mfwo5cwbnejs" path="res://entities/player/player.gd" id="1_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://6xm5foiktlw7" path="res://entities/player/D_Idle.png" id="2_qiwj3"]
 [ext_resource type="Script" uid="uid://crx8mr58b0qq4" path="res://entities/player/movement_input.gd" id="3_bectd"]
+[ext_resource type="Script" uid="uid://dljq56ulgtg2f" path="res://commons/combat/hitbox.gd" id="4_bectd"]
 [ext_resource type="Script" uid="uid://8gi7p5jmty1f" path="res://entities/player/animation_player.gd" id="4_wvtmh"]
 [ext_resource type="Script" uid="uid://dn7vuy63g0k1v" path="res://entities/player/aim_pivot.gd" id="5_7thud"]
 [ext_resource type="Script" uid="uid://csee2fwnnhut7" path="res://entities/player/equip_manager.gd" id="7_26q78"]
 [ext_resource type="Script" uid="uid://crnwlasf2kn54" path="res://entities/player/interactor_area_2d.gd" id="7_j3ovn"]
 [ext_resource type="Script" uid="uid://db0meocykw3h1" path="res://entities/equip/equip_info.gd" id="8_26q78"]
+[ext_resource type="Script" uid="uid://c0kjb7i70r70m" path="res://commons/combat/health.gd" id="10_wvtmh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
 atlas = ExtResource("2_qiwj3")
@@ -105,6 +107,17 @@ acceleration = 3.0
 deacceleration = 3.0
 characterBody2D = NodePath("..")
 
+[node name="Hitbox2D" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_bectd")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://dljq56ulgtg2f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
+shape = SubResource("CapsuleShape2D_4erlq")
+debug_color = Color(0.998937, 0, 0.128371, 0.42)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4erlq")
 
@@ -134,4 +147,11 @@ debug_color = Color(0, 0.823529, 0.431373, 0.419608)
 
 [node name="EquipManager" type="Node" parent="."]
 script = ExtResource("7_26q78")
+custom_collision_mask = 4
 slotInfoList = Array[ExtResource("8_26q78")]([SubResource("Resource_bectd")])
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("10_wvtmh")
+metadata/_custom_type_script = "uid://c0kjb7i70r70m"
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]

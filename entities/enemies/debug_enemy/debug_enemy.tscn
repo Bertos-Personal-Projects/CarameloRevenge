@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1kocwq7jqt8t"]
+
+[ext_resource type="Texture2D" uid="uid://doxxs5ieu8pwp" path="res://entities/enemies/debug_enemy/D_Idle.png" id="1_dxj5g"]
+[ext_resource type="Script" uid="uid://beblq5dfwgxdu" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_urh8j"]
+[ext_resource type="Script" uid="uid://chxbn45jo34jn" path="res://addons/beehave/nodes/composites/selector.gd" id="2_dxj5g"]
+[ext_resource type="Script" uid="uid://blah3joj5mfdu" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_aufpc"]
+[ext_resource type="Script" uid="uid://cum335af2m7uu" path="res://entities/enemies/debug_enemy/is_key_pressed.gd" id="4_gw768"]
+[ext_resource type="Script" uid="uid://xkibl018xovy" path="res://entities/enemies/debug_enemy/change_color.gd" id="5_gw768"]
+[ext_resource type="Script" uid="uid://b1dd55pcu5s32" path="res://entities/enemies/debug_enemy/is_key_NOTpressed.gd" id="7_mfcfo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5k02"]
+atlas = ExtResource("1_dxj5g")
+region = Rect2(15, 6, 18, 26)
+
+[node name="DebugEnemy" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_q5k02")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_urh8j")
+blackboard = NodePath("@Node@38753")
+custom_monitor = true
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://beblq5dfwgxdu"
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("2_dxj5g")
+metadata/_custom_type_script = "uid://chxbn45jo34jn"
+
+[node name="RedHulk" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_aufpc")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsKeyPressed" type="Node" parent="BeehaveTree/SelectorComposite/RedHulk"]
+script = ExtResource("4_gw768")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="ChangeColor" type="Node" parent="BeehaveTree/SelectorComposite/RedHulk" node_paths=PackedStringArray("sprite2D")]
+script = ExtResource("5_gw768")
+sprite2D = NodePath("../../../../Sprite2D")
+color = Color(1, 0, 0, 1)
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="Bruce" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_aufpc")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="isKeyNOTPressed" type="Node" parent="BeehaveTree/SelectorComposite/Bruce"]
+script = ExtResource("7_mfcfo")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="ChangeColor" type="Node" parent="BeehaveTree/SelectorComposite/Bruce" node_paths=PackedStringArray("sprite2D")]
+script = ExtResource("5_gw768")
+sprite2D = NodePath("../../../../Sprite2D")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)

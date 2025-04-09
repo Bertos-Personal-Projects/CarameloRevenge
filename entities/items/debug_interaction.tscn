@@ -32,7 +32,6 @@ script = ExtResource("2_hi8fh")
 shape = SubResource("CircleShape2D_sv0jf")
 
 [node name="Item" parent="." instance=ExtResource("3_wb7uj")]
-modulate = Color(0.380392, 1, 0.309804, 1)
 position = Vector2(64, 0)
 itemData = ExtResource("4_gmy7u")
 
@@ -41,6 +40,7 @@ position = Vector2(-90, 0)
 itemData = ExtResource("5_5bp51")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("6_fnrqy")

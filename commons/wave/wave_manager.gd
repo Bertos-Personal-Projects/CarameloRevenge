@@ -10,7 +10,7 @@ signal enemy_spawn_requested(enemy: PackedScene)
 
 var current_wave: int = 0
 var current_enemy_instances_count: int = 0
-var current_spawns: int = 0
+var spawn_count: int = 0
 var _timer: Timer
 
 
@@ -29,7 +29,7 @@ func _setup_timer() -> void:
 
 
 func _on_timer_timeout() -> void:
-	if current_enemy_instances_count <= max_enemies_on_map and current_spawns < max_spawns:
+	if current_enemy_instances_count < max_enemies_on_map and spawn_count < max_spawns:
 		enemy_spawn_requested.emit(enemy_packed_scene)
-	elif current_spawns >= max_spawns and current_enemy_instances_count == 0:
-		current_wave += 1
+	#elif spawn_count >= max_spawns and current_enemy_instances_count == 0:
+		#current_wave += 1

@@ -2,16 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bitdfcuos5v4f"
-path="res://.godot/imported/Doguin.png-180a040f56e5cc5aac1609328f4d5de5.ctex"
+uid="uid://863s568sneja"
+path="res://.godot/imported/category_composite.svg-43f66e63a7ccfa5ac8ec6da0583b3246.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/Doguin.png"
-dest_files=["res://.godot/imported/Doguin.png-180a040f56e5cc5aac1609328f4d5de5.ctex"]
+source_file="res://addons/beehave/icons/category_composite.svg"
+dest_files=["res://.godot/imported/category_composite.svg-43f66e63a7ccfa5ac8ec6da0583b3246.ctex"]
 
 [params]
 
@@ -30,5 +31,8 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=254
+process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=true
+editor/convert_colors_with_editor_theme=true
