@@ -86,7 +86,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dvkp0"]
-radius = 13.2098
+radius = 21.095
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
@@ -123,22 +123,21 @@ libraries = {
 script = ExtResource("4_wvtmh")
 characterbody = NodePath("..")
 
-[node name="AimPivot" type="Node2D" parent="."]
-script = ExtResource("5_7thud")
-
-[node name="ItemPivot" type="Node2D" parent="AimPivot"]
-position = Vector2(12, 0)
-
-[node name="InteractorArea2D" type="Area2D" parent="AimPivot"]
-position = Vector2(12, 0)
+[node name="InteractorArea2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("7_j3ovn")
 metadata/_custom_type_script = "uid://c875hyyvr4rwb"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AimPivot/InteractorArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorArea2D"]
 shape = SubResource("CircleShape2D_dvkp0")
 debug_color = Color(0, 0.823529, 0.431373, 0.419608)
+
+[node name="AimPivot" type="Node2D" parent="."]
+script = ExtResource("5_7thud")
+
+[node name="ItemPivot" type="Node2D" parent="AimPivot"]
+position = Vector2(12, 0)
 
 [node name="EquipManager" type="Node" parent="."]
 script = ExtResource("7_26q78")
@@ -151,3 +150,5 @@ parent = NodePath("../../AimPivot/ItemPivot")
 metadata/_custom_type_script = "uid://ch6nmrs1y42ix"
 
 [node name="Health" parent="." instance=ExtResource("10_sybl7")]
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]

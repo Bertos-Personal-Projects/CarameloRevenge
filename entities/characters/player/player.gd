@@ -5,4 +5,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_health_died() -> void:
-	pass # Replace with function body.
+	$MovementInput.queue_free()
+	$AimPivot.queue_free()
+	velocity = Vector2.ZERO

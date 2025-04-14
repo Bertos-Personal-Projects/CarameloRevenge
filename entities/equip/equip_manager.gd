@@ -4,6 +4,7 @@ extends Node
 @export_flags("Layer 1", "Layer 2", "Layer 3", "Layer 4")  
 var custom_collision_mask: int = 1
 @export var slots:Array[EquipSlot]
+var item_packed_scene:PackedScene = preload("uid://bqg1tuwgusvc2")
 
 func _ready() -> void:
 	_populate_slot_list()
@@ -52,12 +53,16 @@ func equip(slotID:String, item:ItemWeaponData):
 		instance.collisionMask = custom_collision_mask
 		slot.parent.add_child.call_deferred(instance)
 		slot.instance = instance
-		print(get_parent().name+" has equipped "+item.name)
-	
+		print(get_parent().name+" has equipped "+item.name)	
 
 func unequip(slotID:String):
 	var slot = _getSlot(slotID)
 	if slot:
+		var instance = item_packed_scene.instantiate() as Item
+		instance.itemData = slot.item
+		instance.position = owner.global_position
+		get_tree().current_scene.add_child.call_deferred(instance)
 		slot.item = null
 		slot.instance.queue_free()
+		print(owner.name+" has dropped "+instance.itemData.name)
 		
