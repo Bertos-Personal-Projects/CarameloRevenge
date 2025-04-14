@@ -4,6 +4,7 @@ extends Node2D
 @export var itemData:ItemData
 @onready var interaction_area2D:InteractionArea2D = $InteractionArea
 @onready var sprite2D:Sprite2D = self.get_node('Sprite2D')
+signal picked_up()
 
 func _ready() -> void:
 	if itemData != null:
@@ -17,4 +18,7 @@ func _on_interacted(who:Node2D):
 	elif itemData is ItemWeaponData && who.has_node("EquipManager"):
 		var equipManager = who.get_node("EquipManager") as EquipManager
 		equipManager.equip('primary',itemData)
+	else:
+		return
+	picked_up.emit()
 	queue_free()	

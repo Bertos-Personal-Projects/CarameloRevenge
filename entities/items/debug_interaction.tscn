@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://c875hyyvr4rwb" path="res://commons/interaction/interactor_area2D.gd" id="2_hi8fh"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="3_wb7uj"]
 [ext_resource type="Resource" uid="uid://d21k0p062tnt3" path="res://entities/items/consumables/debug_consumable_data.tres" id="4_gmy7u"]
-[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/debug_weapon_data.tres" id="5_5bp51"]
+[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/data/super_bow.tres" id="5_5bp51"]
 [ext_resource type="Script" uid="uid://c0kjb7i70r70m" path="res://commons/combat/health.gd" id="6_fnrqy"]
 [ext_resource type="Script" uid="uid://b7r1ud50vcvlf" path="res://entities/equip/equip_manager.gd" id="7_hi8fh"]
 [ext_resource type="Script" uid="uid://db0meocykw3h1" path="res://entities/equip/equip_info.gd" id="8_wb7uj"]
-[ext_resource type="PackedScene" uid="uid://bjsh3n1mq457i" path="res://entities/dummy/dummy.tscn" id="9_gmy7u"]
+[ext_resource type="PackedScene" uid="uid://bjsh3n1mq457i" path="res://entities/characters/dummy/dummy.tscn" id="9_gmy7u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sv0jf"]
 

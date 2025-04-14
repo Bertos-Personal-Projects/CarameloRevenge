@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://w46rt74u1qc2"]
+
+[ext_resource type="Script" uid="uid://d0qptl8phiw12" path="res://ui/game_over/game_over.gd" id="1_ns3eh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ab0rd"]
+font_size = 44
+
+[node name="GameOver" type="Control" node_paths=PackedStringArray("retry_button", "main_menu_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ns3eh")
+retry_button = NodePath("MarginContainer/VBoxContainer/RetryButton")
+main_menu_button = NodePath("MarginContainer/VBoxContainer/MainMenuButton")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_ab0rd")
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"

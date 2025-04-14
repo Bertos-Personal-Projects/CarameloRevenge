@@ -1,0 +1,139 @@
+[gd_scene load_steps=9 format=3 uid="uid://dp4mag5fdgv43"]
+
+[ext_resource type="Script" uid="uid://c21fq11lgpw4q" path="res://ui/main_menu/main_menu.gd" id="1_i5wg5"]
+[ext_resource type="Script" uid="uid://65excnsqtmu3" path="res://ui/main_menu/main_screen.gd" id="1_uhj5c"]
+[ext_resource type="Texture2D" uid="uid://c8kgtqq53ume5" path="res://icon.svg" id="2_mu8pm"]
+[ext_resource type="Script" uid="uid://dn6tv8j1ehcih" path="res://ui/main_menu/level_selector/level_selector.gd" id="2_omy8q"]
+[ext_resource type="Script" uid="uid://buhcvw1omt2vm" path="res://ui/main_menu/level_selector/level_data.gd" id="4_i5wg5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gl0q7"]
+font_size = 40
+
+[sub_resource type="Resource" id="Resource_3c04x"]
+script = ExtResource("4_i5wg5")
+id = "the_feirinha"
+name = "The Feirinha"
+uid = "uid://cfcb8x1x1xkyi"
+icon = ExtResource("2_mu8pm")
+metadata/_custom_type_script = "uid://buhcvw1omt2vm"
+
+[sub_resource type="GDScript" id="GDScript_i5wg5"]
+script/source = "extends ItemList
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i5wg5")
+
+[node name="MainScreen" type="Control" parent="." node_paths=PackedStringArray("play_button")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhj5c")
+play_button = NodePath("MarginContainer/VBoxContainer/PlayButton")
+
+[node name="Panel" type="Panel" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreen/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MainScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Caramelo Revenge"
+label_settings = SubResource("LabelSettings_gl0q7")
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="MainScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="LevelSelector" type="Control" parent="." node_paths=PackedStringArray("return_page_button", "item_list")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_omy8q")
+return_page_button = NodePath("HBoxContainer/ReturnPageButton")
+item_list = NodePath("MarginContainer/ItemList")
+level_data_list = Array[ExtResource("4_i5wg5")]([SubResource("Resource_3c04x")])
+
+[node name="Panel" type="Panel" parent="LevelSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="LevelSelector/MarginContainer"]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="LevelSelector/MarginContainer"]
+layout_mode = 2
+script = SubResource("GDScript_i5wg5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelector"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="ReturnPageButton" type="Button" parent="LevelSelector/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = " <  "

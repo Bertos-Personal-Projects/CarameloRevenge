@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemWeaponData" load_steps=4 format=3 uid="uid://cqxh7qavr5dd8"]
+
+[ext_resource type="Script" uid="uid://jcxrxlfivtfl" path="res://entities/items/projectile_weapons/item_weapon_data.gd" id="1_1jrp2"]
+[ext_resource type="Texture2D" uid="uid://jomsrkshrqe" path="res://entities/items/RPG Weapons Dark Outline.png" id="1_gejv8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmomk"]
+atlas = ExtResource("1_gejv8")
+region = Rect2(224, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_1jrp2")
+uid = "uid://b04j5u8fr081r"
+damage = 2
+cooldown = 1.0
+id = "wooden_bow"
+name = "Wooden Bow"
+icon = SubResource("AtlasTexture_lmomk")
+metadata/_custom_type_script = "uid://jcxrxlfivtfl"

@@ -3,28 +3,35 @@ extends Node
 
 @export_flags("Layer 1", "Layer 2", "Layer 3", "Layer 4")  
 var custom_collision_mask: int = 1
-@export var slotInfoList:Array[slotInfo]
-
+@export var slots:Array[EquipSlot]
 
 func _ready() -> void:
-	for slot in  slotInfoList:
+	_populate_slot_list()
+	for slot in  slots:
 		if slot.item != null:
 			equip(slot.id,slot.item)
 
+func _populate_slot_list():
+	for child in get_children():
+		if child is EquipSlot:
+			slots.append(child)
+
 func use(slotID:String):
-	var slot = _getSlot(slotID)
-	if(slot != null && slot.instance != null && slot.instance.has_method("use")):
+	var slot = _getSlot(slotID)	
+	if(slot != null && slot.instance != null && slot.instance.has_method("use") && slot.instance.is_node_ready()):
 		slot.instance.use()
+		#print(owner.name+" "+str(slot.instance.has_method("use"))+" "+str(slot.instance.get_parente().get_parente().get_parente().name))
+
 	
 
-func _getSlot(slotID:String) -> slotInfo:
+func _getSlot(slotID:String) -> EquipSlot:
 	#find slot with same name
-	var index = slotInfoList.find_custom(func (e): return e.id == slotID)
+	var index = slots.find_custom(func (e): return e.id == slotID)
 	#if not found it will return -1 then you don't need to read the rest
 	if index != -1:
 		#but!! if found
 		#let's check if the slot is being occuppied by any item
-		var slot = slotInfoList[index]
+		var slot = slots[index]
 		return slot #return slot
 	return null 
 	
@@ -39,17 +46,18 @@ func equip(slotID:String, item:ItemWeaponData):
 		#instantiate the item packedscene
 		#and add it as child on pivot
 		var instance = load(item.uid).instantiate()
+		instance.texture = item.icon
 		instance.damage = item.damage
 		instance.cooldown = item.cooldown
 		instance.collisionMask = custom_collision_mask
-		get_node(slot.parent).add_child.call_deferred(instance)
+		slot.parent.add_child.call_deferred(instance)
 		slot.instance = instance
 		print(get_parent().name+" has equipped "+item.name)
 	
 
-func unequip(slot:String):
-	pass
-	#if equipped.keys().has(slot):
-		#var itemData = equipped[slot]
-		#equipped.erase(slot)
-		#print(get_parent().name+" has unequipped "+itemData.name)
+func unequip(slotID:String):
+	var slot = _getSlot(slotID)
+	if slot:
+		slot.item = null
+		slot.instance.queue_free()
+		

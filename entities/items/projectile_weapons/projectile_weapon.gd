@@ -1,25 +1,30 @@
 extends Node2D
 
 var damage:int
-@export var firePos:Node2D
-@onready var projectile:PackedScene = load("uid://5jocor68mxln")
+var texture:Texture2D
+@onready var sprite2D:Sprite2D = $Sprite2D
+@onready var firePos:Node2D = $FirePos
+@onready var projectile:PackedScene = preload("uid://5jocor68mxln")
 var collisionMask:int = 1
 var cooldown:float
-var inCooldown:bool = false
-var timer:Timer
+var inCooldown:bool = true
+@export var timer:Timer
 
 func _ready() -> void:
-	timer = Timer.new()
 	timer.wait_time = cooldown
 	timer.timeout.connect(func(): inCooldown=false)
-	add_child.call_deferred(timer)
+	timer.start()
+	sprite2D.texture = texture
 
 
 func use():
-	if projectile == null || timer == null:
-		return
 	if inCooldown:
 		return
+	_instantiate_projectile()
+	inCooldown = true
+	timer.start()
+
+func _instantiate_projectile():
 	var instance = projectile.instantiate() as Projectile
 	instance.damage = damage
 	instance.spwnRotation = global_rotation
@@ -27,6 +32,3 @@ func use():
 	instance.spwnPosition = firePos.global_position
 	instance.collisionMask = collisionMask
 	get_tree().current_scene.add_child(instance)
-	inCooldown = true
-	timer.start()
-	

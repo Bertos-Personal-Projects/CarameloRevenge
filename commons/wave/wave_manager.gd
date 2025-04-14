@@ -18,6 +18,11 @@ func _ready() -> void:
 	current_wave = 0
 	_setup_timer()
 
+func start_wave():
+	_timer.start()
+
+func stop_wave():
+	_timer.stop()
 
 func _setup_timer() -> void:
 	_timer = Timer.new()
@@ -25,11 +30,10 @@ func _setup_timer() -> void:
 	_timer.one_shot = false
 	_timer.wait_time = spawn_rate
 	_timer.timeout.connect(_on_timer_timeout)
-	_timer.start()
 
 
 func _on_timer_timeout() -> void:
-	if current_enemy_instances_count < max_enemies_on_map and spawn_count < max_spawns:
+	if current_enemy_instances_count == 0 and spawn_count < max_spawns:
 		enemy_spawn_requested.emit(enemy_packed_scene)
 	#elif spawn_count >= max_spawns and current_enemy_instances_count == 0:
 		#current_wave += 1

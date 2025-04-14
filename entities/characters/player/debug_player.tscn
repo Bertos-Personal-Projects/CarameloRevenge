@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0i7tnuk4loy2"]
+
+[ext_resource type="PackedScene" uid="uid://5v15ywv7qutf" path="res://entities/characters/player/player.tscn" id="1_5xad3"]
+[ext_resource type="Script" uid="uid://d1da5dhqtog4a" path="res://entities/characters/player/debug_player.gd" id="1_dvkp0"]
+[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/data/super_bow.tres" id="3_4erlq"]
+[ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://ui/health_ui/health_ui.tscn" id="4_iktyl"]
+[ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="5_dvkp0"]
+
+[node name="DebugPlayer" type="Node2D"]
+script = ExtResource("1_dvkp0")
+
+[node name="Player" parent="." instance=ExtResource("1_5xad3")]
+position = Vector2(-106, -144)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(5, 5)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="Item" parent="." instance=ExtResource("5_dvkp0")]
+position = Vector2(-75, -143)
+itemData = ExtResource("3_4erlq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HealthUI" parent="CanvasLayer/Control/MarginContainer" node_paths=PackedStringArray("player") instance=ExtResource("4_iktyl")]
+layout_mode = 2
+player = NodePath("../../../../Player")

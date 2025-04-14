@@ -1,0 +1,385 @@
+[gd_scene load_steps=31 format=3 uid="uid://ce6dqcc35ig10"]
+
+[ext_resource type="Script" uid="uid://bifr5ls1iudof" path="res://entities/characters/enemies/crazy_dog/crazy_dog.gd" id="1_17jen"]
+[ext_resource type="Texture2D" uid="uid://6l1na1tifksv" path="res://entities/characters/enemies/crazy_dog/D_Idle.png" id="1_w24tc"]
+[ext_resource type="Script" uid="uid://biqgiq1o0w2en" path="res://entities/characters/enemies/drop.gd" id="2_ebdxm"]
+[ext_resource type="Script" uid="uid://beblq5dfwgxdu" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_vgnu8"]
+[ext_resource type="Script" uid="uid://blv7qifliv8mm" path="res://entities/characters/enemies/crazy_dog/navigation_agent_2d.gd" id="3_17jen"]
+[ext_resource type="Script" uid="uid://chxbn45jo34jn" path="res://addons/beehave/nodes/composites/selector.gd" id="3_vsq43"]
+[ext_resource type="Script" uid="uid://blah3joj5mfdu" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_i2qma"]
+[ext_resource type="Script" uid="uid://baoeuuv00k5vx" path="res://entities/characters/enemies/crazy_dog/conditions/is_player_in_scene.gd" id="5_i2qma"]
+[ext_resource type="Script" uid="uid://ch6nmrs1y42ix" path="res://entities/equip/equip_slot.gd" id="5_t2qk6"]
+[ext_resource type="Script" uid="uid://baaaimf7uopbu" path="res://entities/characters/enemies/crazy_dog/conditions/is_player_too_close.gd" id="6_jla03"]
+[ext_resource type="Script" uid="uid://bv1pxupp7tk1g" path="res://entities/characters/enemies/crazy_dog/conditions/is_player_too_far.gd" id="6_wfqk7"]
+[ext_resource type="Script" uid="uid://d1bq5pvmgi4tu" path="res://entities/characters/enemies/crazy_dog/actions/chase.gd" id="7_wfqk7"]
+[ext_resource type="Script" uid="uid://nsqrv2jk7hbq" path="res://entities/characters/enemies/crazy_dog/actions/use_item.gd" id="11_t2qk6"]
+[ext_resource type="Script" uid="uid://b7r1ud50vcvlf" path="res://entities/equip/equip_manager.gd" id="13_fc81t"]
+[ext_resource type="Script" uid="uid://cjfs5lcsatpfk" path="res://entities/characters/enemies/crazy_dog/actions/aim_at_player.gd" id="13_qlkq8"]
+[ext_resource type="Script" uid="uid://voi3kmpjomql" path="res://entities/characters/enemies/crazy_dog/actions/run_away.gd" id="13_w7bl2"]
+[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/data/super_bow.tres" id="15_apvrq"]
+[ext_resource type="Script" uid="uid://dljq56ulgtg2f" path="res://commons/combat/hitbox.gd" id="17_t2qk6"]
+[ext_resource type="Script" uid="uid://8gi7p5jmty1f" path="res://entities/characters/player/animation_player.gd" id="19_kecul"]
+[ext_resource type="Script" uid="uid://dshplgwyarwue" path="res://entities/characters/health.gd" id="20_ebdxm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgnu8"]
+atlas = ExtResource("1_w24tc")
+region = Rect2(16, 6, 16, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w24tc"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="Animation" id="Animation_2w7lf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dvkp0"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_jsmwm"]
+resource_name = "running"
+length = 0.400003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0983987, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.436332, 0.0, 0.436332, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2w7lf"]
+_data = {
+&"RESET": SubResource("Animation_2w7lf"),
+&"idle": SubResource("Animation_dvkp0"),
+&"running": SubResource("Animation_jsmwm")
+}
+
+[sub_resource type="Animation" id="Animation_wvtmh"]
+resource_name = "damaged"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_blood"
+}, {
+"args": [],
+"method": &"emit_blood"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7thud"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a1qjk"]
+resource_name = "died"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.296824, 0.292779, 0.736651, 1), Color(1, 1, 1, 1), Color(0.298039, 0.294118, 0.737255, 0.533333)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_blood"
+}, {
+"args": [],
+"method": &"emit_blood"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:rotation")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprite2D:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Hitbox2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1qjk"]
+_data = {
+&"RESET": SubResource("Animation_7thud"),
+&"damaged": SubResource("Animation_wvtmh"),
+&"died": SubResource("Animation_a1qjk")
+}
+
+[node name="CrazyDog" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1_17jen")
+
+[node name="Drop" type="Node2D" parent="."]
+script = ExtResource("2_ebdxm")
+data = ExtResource("15_apvrq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_vgnu8")
+
+[node name="Hitbox2D" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("17_t2qk6")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://dljq56ulgtg2f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
+shape = SubResource("CapsuleShape2D_w24tc")
+debug_color = Color(0.998018, 0, 0.152541, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_w24tc")
+
+[node name="EquipManager" type="Node" parent="."]
+script = ExtResource("13_fc81t")
+custom_collision_mask = 2
+metadata/_custom_type_script = "uid://b7r1ud50vcvlf"
+
+[node name="EquipSlot" type="Node" parent="EquipManager" node_paths=PackedStringArray("parent")]
+script = ExtResource("5_t2qk6")
+id = "primary"
+parent = NodePath("../../AimPivot/ItemPivot")
+item = ExtResource("15_apvrq")
+metadata/_custom_type_script = "uid://ch6nmrs1y42ix"
+
+[node name="AimPivot" type="Node2D" parent="."]
+
+[node name="ItemPivot" type="Node2D" parent="AimPivot"]
+position = Vector2(11, 0)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("characterBody")]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0
+script = ExtResource("3_17jen")
+characterBody = NodePath("..")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_vgnu8")
+actor_node_path = NodePath("..")
+blackboard = NodePath("@Node@32248")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://beblq5dfwgxdu"
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("3_vsq43")
+metadata/_custom_type_script = "uid://chxbn45jo34jn"
+
+[node name="Hostile" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_i2qma")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsPlayerInScene" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("5_i2qma")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="RunOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("3_vsq43")
+metadata/_custom_type_script = "uid://chxbn45jo34jn"
+
+[node name="RunAway" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase"]
+script = ExtResource("4_i2qma")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsPlayerTooClose" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/RunAway"]
+script = ExtResource("6_jla03")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="RunAway" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/RunAway"]
+script = ExtResource("13_w7bl2")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase"]
+script = ExtResource("4_i2qma")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsPlayerTooFar" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/Chase"]
+script = ExtResource("6_wfqk7")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/Chase"]
+script = ExtResource("7_wfqk7")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="AimAtPlayer" type="Node" parent="BeehaveTree/SelectorComposite/Hostile" node_paths=PackedStringArray("aimPivot")]
+script = ExtResource("13_qlkq8")
+aimPivot = NodePath("../../../../AimPivot")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="UseItem" type="Node" parent="BeehaveTree/SelectorComposite/Hostile" node_paths=PackedStringArray("equipManager")]
+script = ExtResource("11_t2qk6")
+equipManager = NodePath("../../../../EquipManager")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("characterbody")]
+libraries = {
+&"": SubResource("AnimationLibrary_2w7lf")
+}
+script = ExtResource("19_kecul")
+characterbody = NodePath("..")
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("20_ebdxm")
+animation_player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://c0kjb7i70r70m"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Health"]
+libraries = {
+&"": SubResource("AnimationLibrary_a1qjk")
+}
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]
+[connection signal="died" from="Health" to="Drop" method="_on_health_died"]
