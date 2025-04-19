@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0i7tnuk4loy2"]
+[gd_scene load_steps=9 format=3 uid="uid://c0i7tnuk4loy2"]
 
 [ext_resource type="PackedScene" uid="uid://5v15ywv7qutf" path="res://entities/characters/player/player.tscn" id="1_5xad3"]
 [ext_resource type="Script" uid="uid://d1da5dhqtog4a" path="res://entities/characters/player/debug_player.gd" id="1_dvkp0"]
+[ext_resource type="Script" uid="uid://iwsqyxewfu7t" path="res://commons/camera/camera_2d.gd" id="2_b1q4w"]
 [ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/data/super_bow.tres" id="3_4erlq"]
+[ext_resource type="Script" uid="uid://dtbcix6ijos0t" path="res://commons/camera/shake_effect.gd" id="3_wkew4"]
 [ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://ui/health_ui/health_ui.tscn" id="4_iktyl"]
 [ext_resource type="Resource" uid="uid://cqxh7qavr5dd8" path="res://entities/items/projectile_weapons/data/wooden_bow.tres" id="5_amb5j"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="5_dvkp0"]
@@ -10,13 +12,20 @@
 [node name="DebugPlayer" type="Node2D"]
 script = ExtResource("1_dvkp0")
 
-[node name="Player" parent="." instance=ExtResource("1_5xad3")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(-106, -144)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 scale = Vector2(5, 5)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+script = ExtResource("2_b1q4w")
+target = NodePath("../Player")
+
+[node name="ShakeEffect" type="Node" parent="Camera2D"]
+script = ExtResource("3_wkew4")
+metadata/_custom_type_script = "uid://dtbcix6ijos0t"
+
+[node name="Player" parent="." instance=ExtResource("1_5xad3")]
+position = Vector2(-106, -144)
 
 [node name="Item" parent="." instance=ExtResource("5_dvkp0")]
 position = Vector2(-75, -143)

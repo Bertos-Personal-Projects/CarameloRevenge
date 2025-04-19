@@ -6,6 +6,8 @@ var custom_collision_mask: int = 1
 @export var slots:Array[EquipSlot]
 var item_packed_scene:PackedScene = preload("uid://bqg1tuwgusvc2")
 
+signal used(slot:EquipSlot)
+
 func _ready() -> void:
 	_populate_slot_list()
 	for slot in  slots:
@@ -19,8 +21,12 @@ func _populate_slot_list():
 
 func use(slotID:String):
 	var slot = _getSlot(slotID)	
-	if(slot != null && slot.instance != null && slot.instance.has_method("use") && slot.instance.is_node_ready()):
-		slot.instance.use()
+	if slot != null && slot.instance != null:
+		if slot.instance.has_method("use"):
+			if slot.instance.is_node_ready():
+				if not slot.instance.in_cooldown:
+					slot.instance.use()
+					used.emit(slot)
 		#print(owner.name+" "+str(slot.instance.has_method("use"))+" "+str(slot.instance.get_parente().get_parente().get_parente().name))
 
 	

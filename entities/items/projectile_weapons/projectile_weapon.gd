@@ -7,21 +7,21 @@ var texture:Texture2D
 @onready var projectile:PackedScene = preload("uid://5jocor68mxln")
 var collisionMask:int = 1
 var cooldown:float
-var inCooldown:bool = true
+var in_cooldown:bool = true
 @export var timer:Timer
 
 func _ready() -> void:
 	timer.wait_time = cooldown
-	timer.timeout.connect(func(): inCooldown=false)
+	timer.timeout.connect(func(): in_cooldown=false)
 	timer.start()
 	sprite2D.texture = texture
 
 
 func use():
-	if inCooldown:
+	if in_cooldown:
 		return
 	_instantiate_projectile()
-	inCooldown = true
+	in_cooldown = true
 	timer.start()
 
 func _instantiate_projectile():
