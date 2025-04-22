@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{169c6f95-a0a0-430e-806f-5b71fe1be395}">
+		<property name="assetPath">
+			<value>caramelo/caramelo02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>192</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.86030208333333336</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fdb88265-524f-4e3d-ac87-efd174110298}</destination>
+		</relationship>
+	</object>
+</objects>

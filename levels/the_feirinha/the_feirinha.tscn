@@ -950,23 +950,19 @@ wave_manager = NodePath("../../WaveManager")
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 size_flags_vertical = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -30.0
+offset_bottom = 30.0
 grow_horizontal = 2
-grow_vertical = 0
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
@@ -978,5 +974,16 @@ player = NodePath("../../../../Player")
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("11_skm2o")]
 visible = false
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/music/music02"
+event_guid = "{a63d2146-cd16-4f94-bb9c-59d529728249}"
+autoplay = true
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://fmod/Build/Desktop/Master.bank", "res://fmod/Build/Desktop/music.bank"]
+
+[node name="FmodEventEmitter2D2" type="FmodEventEmitter2D" parent="."]
+event_guid = "{00000340-0000-0000-7000-000000000000}"
 
 [connection signal="picked_up" from="Item" to="WaveManager" method="_on_item_picked_up"]

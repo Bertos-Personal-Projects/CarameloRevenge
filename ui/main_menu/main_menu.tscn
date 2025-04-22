@@ -137,3 +137,18 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = " <  "
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://fmod/Build/Desktop/Master.bank", "res://fmod/Build/Desktop/music.bank", "res://fmod/Build/Desktop/UI.bank"]
+
+[node name="SongEventEmitter" type="FmodEventEmitter2D" parent="FmodBankLoader"]
+event_name = "event:/music/music01"
+event_guid = "{39169da0-009d-4272-bb81-1969bf183224}"
+autoplay = true
+
+[node name="ButtonEventEmitter" type="FmodEventEmitter2D" parent="FmodBankLoader"]
+event_name = "event:/UI/button"
+event_guid = "{00689c0a-f2ef-4c80-8725-4c7f1019b8b9}"
+fmod_parameters/button/id = 2603450619590112001
+fmod_parameters/button = 0
+fmod_parameters/button/variant_type = 2

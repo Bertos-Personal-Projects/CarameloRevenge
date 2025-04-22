@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://5v15ywv7qutf"]
+[gd_scene load_steps=26 format=3 uid="uid://5v15ywv7qutf"]
 
 [ext_resource type="Script" uid="uid://mfwo5cwbnejs" path="res://entities/characters/player/player.gd" id="1_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://6xm5foiktlw7" path="res://entities/characters/player/D_Idle.png" id="2_qiwj3"]
@@ -10,6 +10,36 @@
 [ext_resource type="Script" uid="uid://crnwlasf2kn54" path="res://entities/characters/player/interactor_area_2d.gd" id="7_j3ovn"]
 [ext_resource type="Script" uid="uid://ch6nmrs1y42ix" path="res://entities/equip/equip_slot.gd" id="9_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://84rou32frl2b" path="res://entities/characters/health.tscn" id="10_sybl7"]
+[ext_resource type="Script" uid="uid://q1qht7ojqb3v" path="res://entities/characters/player/sound_emitters/step_sound_emitter.gd" id="11_5otfs"]
+[ext_resource type="Script" uid="uid://cntoj2c8qakvi" path="res://entities/characters/player/sound_emitters/hurt_sound_emitter.gd" id="12_0s3gd"]
+[ext_resource type="Script" uid="uid://cxx0qcbiwx5ry" path="res://entities/characters/player/step_smoke_particles.gd" id="13_2jd2e"]
+
+[sub_resource type="Gradient" id="Gradient_0s3gd"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.164609, 0.522634, 0.847737)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.584314, 1, 1, 1, 0.282353, 1, 1, 1, 0.137255)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2jd2e"]
+gradient = SubResource("Gradient_0s3gd")
+
+[sub_resource type="Curve" id="Curve_0s3gd"]
+_limits = [-100.0, 0.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.899628, -30.857), -110.493, -110.493, 0, 0, Vector2(1, -49.3034), -260.651, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_2jd2e"]
+curve_y = SubResource("Curve_0s3gd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0s3gd"]
+particle_flag_disable_z = true
+spread = 10.0
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_2jd2e")
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_2jd2e")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
 atlas = ExtResource("2_qiwj3")
@@ -92,6 +122,13 @@ radius = 21.095
 z_index = 10
 script = ExtResource("1_qiwj3")
 
+[node name="StepSmokeParticles" type="GPUParticles2D" parent="." node_paths=PackedStringArray("character_body_2D")]
+position = Vector2(0, 12)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_0s3gd")
+script = ExtResource("13_2jd2e")
+character_body_2D = NodePath("..")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_26q78")
 
@@ -151,4 +188,23 @@ metadata/_custom_type_script = "uid://ch6nmrs1y42ix"
 
 [node name="Health" parent="." instance=ExtResource("10_sybl7")]
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://fmod/Build/Desktop/Master.bank", "res://fmod/Build/Desktop/caramelo.bank"]
+
+[node name="StepSoundEmitter" type="FmodEventEmitter2D" parent="FmodBankLoader" node_paths=PackedStringArray("character_body")]
+event_name = "event:/caramelo/steps"
+event_guid = "{f08c4d79-cccc-4fd4-9def-6465fcb7e5f1}"
+script = ExtResource("11_5otfs")
+character_body = NodePath("../..")
+
+[node name="HurtSoundEmitter" type="FmodEventEmitter2D" parent="FmodBankLoader"]
+event_name = "event:/caramelo/songs"
+event_guid = "{48c66e20-6da4-48f9-ade1-7c649c56a033}"
+attached = false
+"fmod_parameters/sons caramelo/id" = -7085014215998944113
+"fmod_parameters/sons caramelo" = 0
+"fmod_parameters/sons caramelo/variant_type" = 2
+script = ExtResource("12_0s3gd")
+
+[connection signal="damaged" from="Health" to="FmodBankLoader/HurtSoundEmitter" method="_on_health_damaged"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]

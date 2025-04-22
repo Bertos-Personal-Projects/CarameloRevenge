@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{b3f89c31-9f16-41f4-8530-623bfa58ed78}">
+		<property name="assetPath">
+			<value>caramelo/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fdb88265-524f-4e3d-ac87-efd174110298}</destination>
+		</relationship>
+	</object>
+</objects>
