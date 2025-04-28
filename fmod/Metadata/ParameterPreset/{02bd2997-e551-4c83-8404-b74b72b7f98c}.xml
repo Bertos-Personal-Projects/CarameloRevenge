@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{02bd2997-e551-4c83-8404-b74b72b7f98c}">
+		<property name="name">
+			<value>sons caramelo</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3aaa7e2c-4106-43a4-b261-f7ec06ae841a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c8c2b4ec-9860-4621-a5b0-e965cd9b80d4}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c8c2b4ec-9860-4621-a5b0-e965cd9b80d4}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>11</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

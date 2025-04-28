@@ -16,4 +16,5 @@ func _on_target_damaged(value) -> void:
 	shakeEffect.add_trauma(0.5)
 
 func _physics_process(delta: float) -> void:
-	position = target.global_position
+	if is_instance_valid(target):
+		position = target.global_position

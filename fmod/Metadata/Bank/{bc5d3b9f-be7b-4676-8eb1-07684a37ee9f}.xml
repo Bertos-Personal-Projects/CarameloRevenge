@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Bank" id="{bc5d3b9f-be7b-4676-8eb1-07684a37ee9f}">
+		<property name="name">
+			<value>Master</value>
+		</property>
+		<property name="isMasterBank">
+			<value>true</value>
+		</property>
+		<relationship name="folder">
+			<destination>{ed654251-979b-431c-bc8e-7896b4b51441}</destination>
+		</relationship>
+	</object>
+</objects>
