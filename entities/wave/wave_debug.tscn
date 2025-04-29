@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgcaxar88x5t1"]
+
+[ext_resource type="Script" uid="uid://deyqttkvsvyi1" path="res://entities/wave/wave_debug.gd" id="1_ddnin"]
+[ext_resource type="Script" uid="uid://cuvwto1xhh3qp" path="res://entities/wave/wave_manager.gd" id="1_yb3mx"]
+[ext_resource type="Script" uid="uid://ch4xfs6ybmbhh" path="res://entities/wave/wave_spawner.gd" id="3_qt5yx"]
+[ext_resource type="PackedScene" uid="uid://tjoqs1fna1hk" path="res://entities/wave/wave_hud.tscn" id="4_qt5yx"]
+[ext_resource type="PackedScene" uid="uid://ce6dqcc35ig10" path="res://entities/characters/enemies/crazy_dog/crazy_dog.tscn" id="4_xuysr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xuysr"]
+vertices = PackedVector2Array(309, 174.117, -311, 181.867, -311, -182, 309, -182)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-321, -192, 319, -192, 319, 184, -321, 192)])
+
+[node name="WaveDebug" type="Node2D" node_paths=PackedStringArray("wave_manager")]
+script = ExtResource("1_ddnin")
+wave_manager = NodePath("WaveManager")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="WaveManager" type="Node" parent="."]
+script = ExtResource("1_yb3mx")
+_time_between_waves = 5.0
+metadata/_custom_type_script = "uid://cuvwto1xhh3qp"
+
+[node name="WaveSpawner" type="Node" parent="WaveManager"]
+script = ExtResource("3_qt5yx")
+_enemies_packed_scenes = ExtResource("4_xuysr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Wave" parent="CanvasLayer" node_paths=PackedStringArray("wave_manager") instance=ExtResource("4_qt5yx")]
+wave_manager = NodePath("../../WaveManager")
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(1, 0)
+navigation_polygon = SubResource("NavigationPolygon_xuysr")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://tjoqs1fna1hk"]
 
-[ext_resource type="Script" uid="uid://2ph7g3btuts8" path="res://commons/wave/wave_hud.gd" id="2_aby70"]
+[ext_resource type="Script" uid="uid://2ph7g3btuts8" path="res://entities/wave/wave_hud.gd" id="2_aby70"]
 
 [node name="Wave" type="Control" node_paths=PackedStringArray("wave_counter", "current_enemies_counter")]
 layout_mode = 3
@@ -34,6 +34,7 @@ text = "1"
 horizontal_alignment = 1
 
 [node name="KillsCounter" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1"

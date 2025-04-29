@@ -6,4 +6,3 @@ extends Control
 
 func _process(delta: float) -> void:
 	wave_counter.text = "Wave:" + str(wave_manager.current_wave)
-	current_enemies_counter.text = "Enemies Left:" + str(wave_manager.current_enemy_instances_count)
