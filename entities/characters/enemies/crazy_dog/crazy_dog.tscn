@@ -149,7 +149,7 @@ characterBody = NodePath("..")
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_vgnu8")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@28562")
+blackboard = NodePath("@Node@32850")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://beblq5dfwgxdu"
 

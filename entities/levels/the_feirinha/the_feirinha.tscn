@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=4 uid="uid://cfcb8x1x1xkyi"]
 
 [ext_resource type="Script" uid="uid://c2kvw8fjbict6" path="res://entities/game_manager/game_manager.gd" id="1_fhblf"]
-[ext_resource type="Texture2D" uid="uid://dst2fos3estef" path="res://levels/the_feirinha/FieldsTileset.png" id="1_uid5f"]
-[ext_resource type="Texture2D" uid="uid://cls76rnxrdnff" path="res://levels/the_feirinha/Tileset2.png" id="2_js8ih"]
+[ext_resource type="Texture2D" uid="uid://dst2fos3estef" path="res://entities/levels/the_feirinha/FieldsTileset.png" id="1_uid5f"]
+[ext_resource type="Texture2D" uid="uid://cls76rnxrdnff" path="res://entities/levels/the_feirinha/Tileset2.png" id="2_js8ih"]
 [ext_resource type="PackedScene" uid="uid://5v15ywv7qutf" path="res://entities/characters/player/player.tscn" id="3_js8ih"]
-[ext_resource type="Script" uid="uid://dnni83x2s0ao3" path="res://levels/the_feirinha/wave_manager.gd" id="4_2db8p"]
+[ext_resource type="Script" uid="uid://dnni83x2s0ao3" path="res://entities/levels/the_feirinha/wave_manager.gd" id="4_2db8p"]
 [ext_resource type="Script" uid="uid://ch4xfs6ybmbhh" path="res://entities/wave/wave_spawner.gd" id="4_7s2d2"]
 [ext_resource type="Script" uid="uid://iwsqyxewfu7t" path="res://commons/camera/camera_2d.gd" id="4_chp68"]
 [ext_resource type="Script" uid="uid://dtbcix6ijos0t" path="res://commons/camera/shake_effect.gd" id="5_xrwcm"]
@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://tjoqs1fna1hk" path="res://entities/wave/wave_hud.tscn" id="7_6vqvv"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="8_b6khs"]
 [ext_resource type="Resource" uid="uid://cqxh7qavr5dd8" path="res://entities/items/projectile_weapons/data/wooden_bow.tres" id="9_ab0rd"]
-[ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://ui/health_ui/health_ui.tscn" id="10_ab0rd"]
-[ext_resource type="PackedScene" uid="uid://w46rt74u1qc2" path="res://ui/game_over/game_over.tscn" id="11_skm2o"]
+[ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://entities/ui/health_ui/health_ui.tscn" id="10_ab0rd"]
+[ext_resource type="PackedScene" uid="uid://w46rt74u1qc2" path="res://entities/ui/game_over/game_over.tscn" id="11_skm2o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8d28p"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

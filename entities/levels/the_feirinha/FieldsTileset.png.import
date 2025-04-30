@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dess7rrra8b07"
-path="res://.godot/imported/3.png-ccfc4808fb3286ff26d725f197e9da32.ctex"
+uid="uid://dst2fos3estef"
+path="res://.godot/imported/FieldsTileset.png-a1022fb23c65b285eba4aeaa36f64f83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/the_feirinha/house/3.png"
-dest_files=["res://.godot/imported/3.png-ccfc4808fb3286ff26d725f197e9da32.ctex"]
+source_file="res://entities/levels/the_feirinha/FieldsTileset.png"
+dest_files=["res://.godot/imported/FieldsTileset.png-a1022fb23c65b285eba4aeaa36f64f83.ctex"]
 
 [params]
 

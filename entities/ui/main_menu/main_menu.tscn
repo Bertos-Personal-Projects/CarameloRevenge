@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dp4mag5fdgv43"]
 
-[ext_resource type="Script" uid="uid://c21fq11lgpw4q" path="res://ui/main_menu/main_menu.gd" id="1_i5wg5"]
-[ext_resource type="Script" uid="uid://65excnsqtmu3" path="res://ui/main_menu/main_screen.gd" id="1_uhj5c"]
+[ext_resource type="Script" uid="uid://c21fq11lgpw4q" path="res://entities/ui/main_menu/main_menu.gd" id="1_i5wg5"]
+[ext_resource type="Script" uid="uid://65excnsqtmu3" path="res://entities/ui/main_menu/main_screen.gd" id="1_uhj5c"]
 [ext_resource type="Texture2D" uid="uid://c8kgtqq53ume5" path="res://icon.svg" id="2_mu8pm"]
-[ext_resource type="Script" uid="uid://dn6tv8j1ehcih" path="res://ui/main_menu/level_selector/level_selector.gd" id="2_omy8q"]
-[ext_resource type="Script" uid="uid://buhcvw1omt2vm" path="res://ui/main_menu/level_selector/level_data.gd" id="4_i5wg5"]
+[ext_resource type="Script" uid="uid://dn6tv8j1ehcih" path="res://entities/ui/main_menu/level_selector/level_selector.gd" id="2_omy8q"]
+[ext_resource type="Script" uid="uid://buhcvw1omt2vm" path="res://entities/ui/main_menu/level_selector/level_data.gd" id="4_i5wg5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gl0q7"]
 font_size = 40

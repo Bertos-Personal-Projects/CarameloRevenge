@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://iwsqyxewfu7t" path="res://commons/camera/camera_2d.gd" id="2_b1q4w"]
 [ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/data/super_bow.tres" id="3_4erlq"]
 [ext_resource type="Script" uid="uid://dtbcix6ijos0t" path="res://commons/camera/shake_effect.gd" id="3_wkew4"]
-[ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://ui/health_ui/health_ui.tscn" id="4_iktyl"]
+[ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://entities/ui/health_ui/health_ui.tscn" id="4_iktyl"]
 [ext_resource type="Resource" uid="uid://cqxh7qavr5dd8" path="res://entities/items/projectile_weapons/data/wooden_bow.tres" id="5_amb5j"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="5_dvkp0"]
 
