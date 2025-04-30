@@ -11,15 +11,10 @@ region = Rect2(7, 9, 19, 15)
 atlas = ExtResource("2_2k65e")
 region = Rect2(39, 9, 18, 15)
 
-[node name="HealthUI" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="HealthUI" type="HBoxContainer"]
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_jokpn")
 full_heart = SubResource("AtlasTexture_2k65e")
 broken_heart = SubResource("AtlasTexture_d0che")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1

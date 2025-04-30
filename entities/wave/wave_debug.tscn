@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://deyqttkvsvyi1" path="res://entities/wave/wave_debug.gd" id="1_ddnin"]
 [ext_resource type="Script" uid="uid://cuvwto1xhh3qp" path="res://entities/wave/wave_manager.gd" id="1_yb3mx"]
 [ext_resource type="Script" uid="uid://ch4xfs6ybmbhh" path="res://entities/wave/wave_spawner.gd" id="3_qt5yx"]
-[ext_resource type="PackedScene" uid="uid://tjoqs1fna1hk" path="res://entities/wave/wave_hud.tscn" id="4_qt5yx"]
+[ext_resource type="PackedScene" uid="uid://tjoqs1fna1hk" path="res://entities/ui/wave_ui/wave_ui.tscn" id="4_qt5yx"]
 [ext_resource type="PackedScene" uid="uid://ce6dqcc35ig10" path="res://entities/characters/enemies/crazy_dog/crazy_dog.tscn" id="4_xuysr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xuysr"]

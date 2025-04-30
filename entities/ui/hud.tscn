@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6ivgk5asmrxa"]
+
+[ext_resource type="FontFile" uid="uid://b5qynx1232tqu" path="res://assets/fonts/Daydream.ttf" id="1_4x1bp"]
+[ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://entities/ui/health_ui/health_ui.tscn" id="1_xw5jf"]
+[ext_resource type="Script" uid="uid://2ph7g3btuts8" path="res://entities/ui/wave_ui/wave_counter.gd" id="2_o5v67"]
+
+[sub_resource type="Theme" id="Theme_4vuvd"]
+Label/fonts/font = ExtResource("1_4x1bp")
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4vuvd")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Header" type="Control" parent="Content"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 22.0
+grow_horizontal = 2
+
+[node name="HealthUI" parent="Content/Header" instance=ExtResource("1_xw5jf")]
+layout_mode = 1
+offset_bottom = 0.0
+size_flags_horizontal = 2
+
+[node name="WaveCounter" type="VBoxContainer" parent="Content/Header"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_right = 36.0
+offset_bottom = 48.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="WaveCounterLabel2" type="Label" parent="Content/Header/WaveCounter"]
+layout_mode = 2
+text = "Wave"
+horizontal_alignment = 1
+
+[node name="WaveCounterLabel" type="Label" parent="Content/Header/WaveCounter"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("2_o5v67")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cfcb8x1x1xkyi"]
+[gd_scene load_steps=18 format=4 uid="uid://cfcb8x1x1xkyi"]
 
 [ext_resource type="Script" uid="uid://c2kvw8fjbict6" path="res://entities/game_manager/game_manager.gd" id="1_fhblf"]
 [ext_resource type="Texture2D" uid="uid://dst2fos3estef" path="res://entities/levels/the_feirinha/FieldsTileset.png" id="1_uid5f"]
@@ -9,11 +9,10 @@
 [ext_resource type="Script" uid="uid://iwsqyxewfu7t" path="res://commons/camera/camera_2d.gd" id="4_chp68"]
 [ext_resource type="Script" uid="uid://dtbcix6ijos0t" path="res://commons/camera/shake_effect.gd" id="5_xrwcm"]
 [ext_resource type="PackedScene" uid="uid://ce6dqcc35ig10" path="res://entities/characters/enemies/crazy_dog/crazy_dog.tscn" id="6_8d28p"]
-[ext_resource type="PackedScene" uid="uid://tjoqs1fna1hk" path="res://entities/wave/wave_hud.tscn" id="7_6vqvv"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="8_b6khs"]
 [ext_resource type="Resource" uid="uid://cqxh7qavr5dd8" path="res://entities/items/projectile_weapons/data/wooden_bow.tres" id="9_ab0rd"]
-[ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://entities/ui/health_ui/health_ui.tscn" id="10_ab0rd"]
 [ext_resource type="PackedScene" uid="uid://w46rt74u1qc2" path="res://entities/ui/game_over/game_over.tscn" id="11_skm2o"]
+[ext_resource type="PackedScene" uid="uid://c6ivgk5asmrxa" path="res://entities/ui/hud.tscn" id="12_qjj5b"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8d28p"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -895,33 +894,11 @@ position = Vector2(-9, -79)
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("4_2db8p")
-max_enemies_on_map = 4
-max_spawns = 16
-enemy_packed_scene = ExtResource("6_8d28p")
 metadata/_custom_type_script = "uid://cuvwto1xhh3qp"
 
-[node name="WaveSpawner2" type="Node2D" parent="." node_paths=PackedStringArray("wave_manager")]
-position = Vector2(-236, 0)
+[node name="WaveSpawner" type="Node" parent="WaveManager"]
 script = ExtResource("4_7s2d2")
-wave_manager = NodePath("../WaveManager")
-metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
-
-[node name="WaveSpawner3" type="Node2D" parent="." node_paths=PackedStringArray("wave_manager")]
-position = Vector2(261, 0)
-script = ExtResource("4_7s2d2")
-wave_manager = NodePath("../WaveManager")
-metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
-
-[node name="WaveSpawner4" type="Node2D" parent="." node_paths=PackedStringArray("wave_manager")]
-position = Vector2(0, -222)
-script = ExtResource("4_7s2d2")
-wave_manager = NodePath("../WaveManager")
-metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
-
-[node name="WaveSpawner5" type="Node2D" parent="." node_paths=PackedStringArray("wave_manager")]
-position = Vector2(-1, 178)
-script = ExtResource("4_7s2d2")
-wave_manager = NodePath("../WaveManager")
+_enemies_packed_scenes = ExtResource("6_8d28p")
 metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
 
 [node name="Item" parent="." instance=ExtResource("8_b6khs")]
@@ -945,32 +922,7 @@ text = "Press E to pickp"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Wave" parent="CanvasLayer" node_paths=PackedStringArray("wave_manager") instance=ExtResource("7_6vqvv")]
-wave_manager = NodePath("../../WaveManager")
-
-[node name="HUD" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 30.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="HealthUI" parent="CanvasLayer/HUD/MarginContainer" node_paths=PackedStringArray("player") instance=ExtResource("10_ab0rd")]
-layout_mode = 2
-player = NodePath("../../../../Player")
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("12_qjj5b")]
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("11_skm2o")]
 visible = false
