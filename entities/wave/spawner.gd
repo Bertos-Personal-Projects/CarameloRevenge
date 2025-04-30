@@ -33,7 +33,7 @@ func spawn_enemy_outside_view(enemy_scene: PackedScene, min_distance: float = 10
 		var angle = randf_range(0, TAU)
 		var distance = randf_range( min_distance, min_distance * 1.5)
 		
-		spawn_pos = get_viewport().get_camera_2d().global_position + Vector2.from_angle(angle) * distance
+		spawn_pos = get_viewport().get_camera_2d().global_position + Vector2.from_angle(angle) * camera_bounds.size
 		
 		# Check if spawn_pos is outside camera bounds
 		if not camera_bounds.has_point(spawn_pos):
