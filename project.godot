@@ -38,6 +38,8 @@ config/icon="res://icon.svg"
 BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
 BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 FmodManager="*res://addons/fmod/FmodManager.gd"
+Console="*res://addons/console/console.gd"
+GameManager="*res://entities/managers/game_manager.gd"
 
 [dotnet]
 
@@ -45,7 +47,7 @@ project/assembly_name="ZeldaRing"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/fmod/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/console/plugin.cfg", "res://addons/fmod/plugin.cfg")
 
 [file_customization]
 

@@ -97,7 +97,7 @@ _data = {
 &"running": SubResource("Animation_jsmwm")
 }
 
-[node name="CrazyDog" type="CharacterBody2D"]
+[node name="CrazyDog" type="CharacterBody2D" groups=["enemy"]]
 z_index = 10
 script = ExtResource("1_17jen")
 
@@ -149,7 +149,7 @@ characterBody = NodePath("..")
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_vgnu8")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@200496")
+blackboard = NodePath("@Node@28562")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://beblq5dfwgxdu"
 

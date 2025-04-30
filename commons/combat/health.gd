@@ -8,13 +8,17 @@ signal damaged(value:int)
 signal healed(value:int)
 signal died()
 
+func kill():
+	current_health = 0
+	died.emit()
+	print(get_parent().name+" has died")
+
 func damage(value:int):
 	current_health = clamp(current_health-value,0,max_health)
 	damaged.emit(value)
 	print(get_parent().name+" received "+ str(value) +" of damage")
 	if current_health<=0:
-		died.emit()
-		print(get_parent().name+" has died")
+		kill()
 
 func heal(value:int):
 	current_health = clamp(current_health+value,0,max_health)

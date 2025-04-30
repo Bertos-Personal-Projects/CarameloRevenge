@@ -9,10 +9,15 @@ signal wave_advenced()
 var _timer: Timer
 @export var _time_between_waves:float = 300 #five minutes between waves
 
-
 func _ready() -> void:
 	current_wave = 0
 	_setup_timer()
+	
+	#register commands
+	Console.add_command("set_wave",func(value:String): 
+		if value.is_valid_int():
+			set_wave(int(value))
+		,1)
 
 func start_wave():
 	_timer.start()
@@ -29,5 +34,10 @@ func _setup_timer() -> void:
 
 func _on_timer_timeout() -> void:
 	current_wave += 1
+	wave_advenced.emit()
+	print("Wave Manager current wave: "+ str(current_wave))
+
+func set_wave(value:int) -> void:
+	current_wave = value
 	wave_advenced.emit()
 	print("Wave Manager current wave: "+ str(current_wave))

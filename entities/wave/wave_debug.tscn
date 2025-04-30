@@ -20,7 +20,6 @@ zoom = Vector2(2, 2)
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("1_yb3mx")
-_time_between_waves = 5.0
 metadata/_custom_type_script = "uid://cuvwto1xhh3qp"
 
 [node name="WaveSpawner" type="Node" parent="WaveManager"]
