@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6ivgk5asmrxa"]
+[gd_scene load_steps=4 format=3 uid="uid://c6ivgk5asmrxa"]
 
-[ext_resource type="FontFile" uid="uid://b5qynx1232tqu" path="res://assets/fonts/Daydream.ttf" id="1_4x1bp"]
+[ext_resource type="Theme" uid="uid://drib477dub3xk" path="res://assets/themes/hud.tres" id="1_4x1bp"]
 [ext_resource type="PackedScene" uid="uid://bt2cr6a7umfgm" path="res://entities/ui/health_ui/health_ui.tscn" id="1_xw5jf"]
 [ext_resource type="Script" uid="uid://2ph7g3btuts8" path="res://entities/ui/wave_ui/wave_counter.gd" id="2_o5v67"]
-
-[sub_resource type="Theme" id="Theme_4vuvd"]
-Label/fonts/font = ExtResource("1_4x1bp")
 
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15
@@ -13,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_4vuvd")
+theme = ExtResource("1_4x1bp")
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
