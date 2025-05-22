@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6g61bw1sbo4a"]
+[gd_scene load_steps=4 format=3 uid="uid://c6g61bw1sbo4a"]
 
 [ext_resource type="Script" uid="uid://xa5pvyfdemoa" path="res://entities/characters/enemies/crazy_dog/debug_scene_crazy_dog.gd" id="1_rfu82"]
+[ext_resource type="Script" uid="uid://ba4y6k8pkipf3" path="res://entities/wave/spawner.gd" id="2_dolhd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rqpdu"]
 vertices = PackedVector2Array(822, 494.039, -886, 501.953, -886, -502, 822, -502)
@@ -16,3 +17,7 @@ script = ExtResource("1_rfu82")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_rqpdu")
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("2_dolhd")
+metadata/_custom_type_script = "uid://ba4y6k8pkipf3"

@@ -19,7 +19,7 @@ texture = SubResource("AtlasTexture_q5k02")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_urh8j")
-blackboard = NodePath("@Node@38753")
+blackboard = NodePath("@Node@22478")
 custom_monitor = true
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://beblq5dfwgxdu"

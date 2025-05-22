@@ -1,7 +1,18 @@
 class_name Spawner
 extends Node
 
-signal spawned(enemy_instance:Node)
+signal spawned(enemy_instance: Node)
+
+func _ready() -> void:
+	Console.add_command("spawn_enemy_using_path", spawn_enemy_using_path, 1)
+
+func spawn_enemy_using_path(path: String):
+		var enemy_resource = load(path)
+		if is_instance_valid(enemy_resource) && enemy_resource is PackedScene:
+			spawn_enemy_outside_view(enemy_resource)
+			print("enemy spawned")
+		else:
+			printerr("Spawn failed, path to enemy is invalid or the path is pointing to a non packedScene Resource")
 
 #Spawn a enemy outside the player's camera view
 func _get_camera_bounds() -> Rect2:
@@ -15,8 +26,8 @@ func _get_camera_bounds() -> Rect2:
 	var camera_extents = viewport_size * 0.5 / camera.zoom
 	
 	return Rect2(
-		camera_center - camera_extents, #origin
-		camera_extents * 2.0 #size
+		camera_center - camera_extents, # origin
+		camera_extents * 2.0 # size
 	)
 
 func spawn_enemy_outside_view(enemy_scene: PackedScene, min_distance: float = 100.0) -> void:
@@ -31,7 +42,7 @@ func spawn_enemy_outside_view(enemy_scene: PackedScene, min_distance: float = 10
 	while attempts < 10:
 		# Random angle around the player (0 to 360 degrees)
 		var angle = randf_range(0, TAU)
-		var distance = randf_range( min_distance, min_distance * 1.5)
+		var distance = randf_range(min_distance, min_distance * 1.5)
 		
 		spawn_pos = get_viewport().get_camera_2d().global_position + Vector2.from_angle(angle) * camera_bounds.size
 		
@@ -41,7 +52,7 @@ func spawn_enemy_outside_view(enemy_scene: PackedScene, min_distance: float = 10
 			enemy.global_position = spawn_pos
 			get_tree().current_scene.add_child.call_deferred(enemy)
 			spawned.emit(enemy)
-			print("Spawner has summoned " + enemy.name + " at "+ str(enemy.global_position))
+			print("Spawner has summoned " + enemy.name + " at " + str(enemy.global_position))
 			break
 		
 		attempts += 1

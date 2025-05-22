@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgcaxar88x5t1"]
+[gd_scene load_steps=6 format=3 uid="uid://dgcaxar88x5t1"]
 
 [ext_resource type="Script" uid="uid://deyqttkvsvyi1" path="res://entities/wave/wave_debug.gd" id="1_ddnin"]
 [ext_resource type="Script" uid="uid://cuvwto1xhh3qp" path="res://entities/wave/wave_manager.gd" id="1_yb3mx"]
 [ext_resource type="Script" uid="uid://ch4xfs6ybmbhh" path="res://entities/wave/wave_spawner.gd" id="3_qt5yx"]
-[ext_resource type="PackedScene" uid="uid://tjoqs1fna1hk" path="res://entities/ui/wave_ui/wave_ui.tscn" id="4_qt5yx"]
 [ext_resource type="PackedScene" uid="uid://ce6dqcc35ig10" path="res://entities/characters/enemies/crazy_dog/crazy_dog.tscn" id="4_xuysr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xuysr"]
@@ -28,8 +27,17 @@ _enemies_packed_scenes = ExtResource("4_xuysr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Wave" parent="CanvasLayer" node_paths=PackedStringArray("wave_manager") instance=ExtResource("4_qt5yx")]
-wave_manager = NodePath("../../WaveManager")
+[node name="Wave" parent="CanvasLayer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
 
 [node name="Player" type="Node2D" parent="."]
 
