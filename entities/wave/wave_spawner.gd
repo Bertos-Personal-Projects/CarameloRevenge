@@ -8,6 +8,7 @@ var wave_manager: WaveManager
 #spawn
 var _timer:Timer
 var _spawner:Spawner
+@export var _rate = 1
 @export var _max_enemies:int = 10
 @export var _spawn_delay:float = 1 #seconds between spawns
 var _current_enemy_count:int = 0
