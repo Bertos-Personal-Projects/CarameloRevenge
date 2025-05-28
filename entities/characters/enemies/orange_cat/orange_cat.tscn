@@ -1,0 +1,257 @@
+[gd_scene load_steps=35 format=3 uid="uid://b7g3au0cjqlv5"]
+
+[ext_resource type="Script" uid="uid://beblq5dfwgxdu" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_1hbh8"]
+[ext_resource type="Texture2D" uid="uid://b635vl6x7xat2" path="res://entities/characters/enemies/orange_cat/D_Idle.png" id="1_6p4qy"]
+[ext_resource type="Script" uid="uid://bssf84hoclg0p" path="res://entities/characters/enemies/enemy.gd" id="1_7kpdb"]
+[ext_resource type="Script" uid="uid://chxbn45jo34jn" path="res://addons/beehave/nodes/composites/selector.gd" id="2_7kpdb"]
+[ext_resource type="Script" uid="uid://dljq56ulgtg2f" path="res://commons/combat/hitbox.gd" id="2_dax7b"]
+[ext_resource type="Resource" uid="uid://trgod7sd4rpx" path="res://entities/characters/enemies/orange_cat/orange_cat_data.tres" id="2_gibfy"]
+[ext_resource type="Script" uid="uid://blah3joj5mfdu" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_15vlq"]
+[ext_resource type="Script" uid="uid://8gi7p5jmty1f" path="res://entities/characters/player/animation_player.gd" id="4_d4hqg"]
+[ext_resource type="Script" uid="uid://b0mj4jgg538rl" path="res://entities/characters/enemies/ai/conditions/is_alive.gd" id="4_gibfy"]
+[ext_resource type="PackedScene" uid="uid://84rou32frl2b" path="res://entities/characters/health.tscn" id="4_ouuk6"]
+[ext_resource type="Script" uid="uid://b7r1ud50vcvlf" path="res://entities/equip/equip_manager.gd" id="5_ft62d"]
+[ext_resource type="Script" uid="uid://baoeuuv00k5vx" path="res://entities/characters/enemies/ai/conditions/is_player_in_scene.gd" id="5_lkf7g"]
+[ext_resource type="Script" uid="uid://ch6nmrs1y42ix" path="res://entities/equip/equip_slot.gd" id="6_asier"]
+[ext_resource type="Script" uid="uid://baaaimf7uopbu" path="res://entities/characters/enemies/ai/conditions/is_player_too_close.gd" id="6_igbbf"]
+[ext_resource type="Script" uid="uid://voi3kmpjomql" path="res://entities/characters/enemies/ai/actions/run_away.gd" id="7_8sipr"]
+[ext_resource type="Resource" uid="uid://dqq7sqbewgobg" path="res://entities/items/projectile_weapons/data/super_bow.tres" id="7_ocogv"]
+[ext_resource type="Script" uid="uid://blv7qifliv8mm" path="res://entities/characters/enemies/commons/navigation_agent_2d.gd" id="8_4gyvc"]
+[ext_resource type="Script" uid="uid://bv1pxupp7tk1g" path="res://entities/characters/enemies/ai/conditions/is_player_not_too_close.gd" id="8_byjws"]
+[ext_resource type="Script" uid="uid://d1bq5pvmgi4tu" path="res://entities/characters/enemies/ai/actions/chase.gd" id="9_m0avl"]
+[ext_resource type="Script" uid="uid://cjfs5lcsatpfk" path="res://entities/characters/enemies/ai/actions/aim_at_player.gd" id="10_47w6n"]
+[ext_resource type="Script" uid="uid://nsqrv2jk7hbq" path="res://entities/characters/enemies/ai/actions/use_item.gd" id="11_d03la"]
+[ext_resource type="Script" uid="uid://djigftxnsib2n" path="res://entities/characters/enemies/ai/actions/reset_navigation_target_position.gd" id="12_pwrmk"]
+[ext_resource type="Script" uid="uid://dig4a284eprwg" path="res://entities/characters/enemies/ai/conditions/are_friends_around.gd" id="15_15vlq"]
+[ext_resource type="Script" uid="uid://drkv3ao177nh2" path="res://entities/characters/enemies/ai/conditions/is_on_camera.gd" id="23_igbbf"]
+[ext_resource type="Script" uid="uid://deqptd6dvbbtj" path="res://entities/characters/enemies/ai/actions/exit_camera_view.gd" id="24_8sipr"]
+[ext_resource type="Script" uid="uid://boicverm81nvb" path="res://entities/characters/enemies/ai/conditions/is_not_on_camera.gd" id="25_byjws"]
+[ext_resource type="Script" uid="uid://crw7kcmatedi4" path="res://entities/characters/enemies/ai/actions/despawn.gd" id="26_byjws"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7kpdb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4hqg"]
+atlas = ExtResource("1_6p4qy")
+region = Rect2(15, 6, 18, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ouuk6"]
+
+[sub_resource type="Animation" id="Animation_2w7lf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dvkp0"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_jsmwm"]
+resource_name = "running"
+length = 0.400003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0983987, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.436332, 0.0, 0.436332, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2w7lf"]
+_data = {
+&"RESET": SubResource("Animation_2w7lf"),
+&"idle": SubResource("Animation_dvkp0"),
+&"running": SubResource("Animation_jsmwm")
+}
+
+[node name="OrangeCat" type="CharacterBody2D"]
+script = ExtResource("1_7kpdb")
+data = ExtResource("2_gibfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7kpdb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_d4hqg")
+
+[node name="Hitbox2D" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("2_dax7b")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://dljq56ulgtg2f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
+shape = SubResource("CapsuleShape2D_ouuk6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("characterbody")]
+libraries = {
+&"": SubResource("AnimationLibrary_2w7lf")
+}
+script = ExtResource("4_d4hqg")
+characterbody = NodePath("..")
+
+[node name="Health" parent="." instance=ExtResource("4_ouuk6")]
+
+[node name="EquipManager" type="Node" parent="."]
+script = ExtResource("5_ft62d")
+custom_collision_mask = 2
+metadata/_custom_type_script = "uid://b7r1ud50vcvlf"
+
+[node name="EquipSlot" type="Node" parent="EquipManager" node_paths=PackedStringArray("parent")]
+script = ExtResource("6_asier")
+id = "primary"
+parent = NodePath("../../AimPivot/ItemPivot")
+item = ExtResource("7_ocogv")
+metadata/_custom_type_script = "uid://ch6nmrs1y42ix"
+
+[node name="AimPivot" type="Node2D" parent="."]
+
+[node name="ItemPivot" type="Node2D" parent="AimPivot"]
+position = Vector2(11, 0)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("characterBody")]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0
+script = ExtResource("8_4gyvc")
+characterBody = NodePath("..")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_1hbh8")
+actor_node_path = NodePath("..")
+blackboard = NodePath("@Node@21830")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://beblq5dfwgxdu"
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("2_7kpdb")
+metadata/_custom_type_script = "uid://chxbn45jo34jn"
+
+[node name="Hostile" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("3_15vlq")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsAlive" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("4_gibfy")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="IsPlayerInScene" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("5_lkf7g")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="AreFriendsAround" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("15_15vlq")
+enemies_id = Array[String](["crazy_dog"])
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="RunOrChase" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("2_7kpdb")
+metadata/_custom_type_script = "uid://chxbn45jo34jn"
+
+[node name="RunAway" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase"]
+script = ExtResource("3_15vlq")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsPlayerTooClose" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/RunAway"]
+script = ExtResource("6_igbbf")
+desiredDistance = 150.0
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="RunAway" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/RunAway"]
+script = ExtResource("7_8sipr")
+desired_distance = 150.0
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase"]
+script = ExtResource("3_15vlq")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsPlayerNotTooClose" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/Chase"]
+script = ExtResource("8_byjws")
+desiredDistance = 150.0
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/Hostile/RunOrChase/Chase"]
+script = ExtResource("9_m0avl")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="AimAtPlayer" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("10_47w6n")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="UseItem" type="Node" parent="BeehaveTree/SelectorComposite/Hostile"]
+script = ExtResource("11_d03la")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="Flee" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("2_7kpdb")
+metadata/_custom_type_script = "uid://chxbn45jo34jn"
+
+[node name="RunOutOfView" type="Node" parent="BeehaveTree/SelectorComposite/Flee"]
+script = ExtResource("3_15vlq")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsOnCamera" type="Node" parent="BeehaveTree/SelectorComposite/Flee/RunOutOfView"]
+script = ExtResource("23_igbbf")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="ExitCameraView" type="Node" parent="BeehaveTree/SelectorComposite/Flee/RunOutOfView"]
+script = ExtResource("24_8sipr")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="QueueFree" type="Node" parent="BeehaveTree/SelectorComposite/Flee"]
+script = ExtResource("3_15vlq")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="IsNotOnCamera" type="Node" parent="BeehaveTree/SelectorComposite/Flee/QueueFree"]
+script = ExtResource("25_byjws")
+metadata/_custom_type_script = "uid://cl6v2k842qiai"
+
+[node name="Despawn" type="Node" parent="BeehaveTree/SelectorComposite/Flee/QueueFree"]
+script = ExtResource("26_byjws")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"
+
+[node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("3_15vlq")
+metadata/_custom_type_script = "uid://blah3joj5mfdu"
+
+[node name="ResetNavigationTargetPosition" type="Node" parent="BeehaveTree/SelectorComposite/Idle"]
+script = ExtResource("12_pwrmk")
+metadata/_custom_type_script = "uid://bbtcehh3lhltw"

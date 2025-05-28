@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://trgod7sd4rpx"]
+
+[ext_resource type="Script" uid="uid://ue3wb3k7ajsl" path="res://entities/characters/enemies/enemy_data.gd" id="1_3caw3"]
+
+[resource]
+script = ExtResource("1_3caw3")
+id = "orange_cat"
+name = "Orange Cat"
+description = "A cat that is orange"
+metadata/_custom_type_script = "uid://ue3wb3k7ajsl"

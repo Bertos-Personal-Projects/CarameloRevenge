@@ -1,7 +1,8 @@
 extends ActionLeaf
 
-@export var aimPivot:Node2D
-
 func tick(actor: Node, blackboard: Blackboard) -> int:
-	aimPivot.look_at(get_tree().current_scene.get_node("Player").position)
-	return SUCCESS
+	if actor.has_node("AimPivot"):
+		var aim_pivot = actor.get_node("AimPivot")
+		aim_pivot.look_at(get_tree().current_scene.get_node("Player").position)
+		return SUCCESS
+	return FAILURE

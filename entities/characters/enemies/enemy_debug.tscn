@@ -1,23 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6g61bw1sbo4a"]
+[gd_scene load_steps=10 format=3 uid="uid://c6g61bw1sbo4a"]
 
-[ext_resource type="Script" uid="uid://xa5pvyfdemoa" path="res://entities/characters/enemies/crazy_dog/debug_scene_crazy_dog.gd" id="1_rfu82"]
+[ext_resource type="Script" uid="uid://xa5pvyfdemoa" path="res://entities/characters/enemies/enemy_debug_scene.gd" id="1_rfu82"]
 [ext_resource type="Script" uid="uid://ba4y6k8pkipf3" path="res://entities/wave/spawner.gd" id="2_dolhd"]
+[ext_resource type="Script" uid="uid://cuvwto1xhh3qp" path="res://entities/wave/wave_manager.gd" id="3_2q1fb"]
+[ext_resource type="Script" uid="uid://ch4xfs6ybmbhh" path="res://entities/wave/wave_spawner.gd" id="4_msuxr"]
+[ext_resource type="PackedScene" uid="uid://ce6dqcc35ig10" path="res://entities/characters/enemies/crazy_dog/crazy_dog.tscn" id="5_8kt38"]
+[ext_resource type="PackedScene" uid="uid://b7g3au0cjqlv5" path="res://entities/characters/enemies/orange_cat/orange_cat.tscn" id="6_cvh8v"]
+[ext_resource type="Script" uid="uid://chd0ar7mybg36" path="res://entities/wave/spawner_condition.gd" id="7_hm0on"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dolhd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rqpdu"]
 vertices = PackedVector2Array(822, 494.039, -886, 501.953, -886, -502, 822, -502)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(832, -512, -896, -512, -896, 512, 832, 504)])
 
-[node name="CrazyDogDebugScene" type="Node2D"]
+[node name="EnemyDebugScene" type="Node2D"]
 script = ExtResource("1_rfu82")
 
 [node name="Player" type="Node2D" parent="."]
 
+[node name="hitbox" type="Area2D" parent="Player"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/hitbox"]
+shape = SubResource("CircleShape2D_dolhd")
+debug_color = Color(0.981781, 0, 0.368042, 0.42)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_rqpdu")
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("2_dolhd")
 metadata/_custom_type_script = "uid://ba4y6k8pkipf3"
+
+[node name="WaveManager" type="Node" parent="."]
+script = ExtResource("3_2q1fb")
+metadata/_custom_type_script = "uid://cuvwto1xhh3qp"
+
+[node name="CrazyDog" type="Node" parent="WaveManager"]
+script = ExtResource("4_msuxr")
+_enemies_packed_scenes = ExtResource("5_8kt38")
+_max_enemies = 2
+_spawn_delay = 5.0
+metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
+
+[node name="OrangeCat" type="Node" parent="WaveManager"]
+script = ExtResource("4_msuxr")
+_enemies_packed_scenes = ExtResource("6_cvh8v")
+_max_enemies = 3
+_spawn_delay = 5.0
+metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
+
+[node name="SpawnerCondition" type="Node" parent="WaveManager/OrangeCat"]
+script = ExtResource("7_hm0on")
+enemies_id = Array[String](["crazy_dog"])
