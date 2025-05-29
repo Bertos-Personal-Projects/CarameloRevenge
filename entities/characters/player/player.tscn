@@ -1,21 +1,19 @@
-[gd_scene load_steps=20 format=3 uid="uid://5v15ywv7qutf"]
+[gd_scene load_steps=22 format=3 uid="uid://5v15ywv7qutf"]
 
 [ext_resource type="Script" uid="uid://mfwo5cwbnejs" path="res://entities/characters/player/player.gd" id="1_qiwj3"]
-[ext_resource type="Texture2D" uid="uid://6xm5foiktlw7" path="res://entities/characters/player/D_Idle.png" id="2_qiwj3"]
+[ext_resource type="Texture2D" uid="uid://brit806yro4cb" path="res://entities/characters/player/images/caramelitogame_ladodireito.png" id="2_0s3gd"]
 [ext_resource type="Script" uid="uid://crx8mr58b0qq4" path="res://entities/characters/player/movement_input.gd" id="3_bectd"]
+[ext_resource type="Script" uid="uid://bamgjs6dhlyvc" path="res://entities/characters/player/sprite_2d.gd" id="3_mnavw"]
 [ext_resource type="Script" uid="uid://dljq56ulgtg2f" path="res://commons/combat/hitbox.gd" id="4_bectd"]
 [ext_resource type="Script" uid="uid://8gi7p5jmty1f" path="res://entities/characters/player/animation_player.gd" id="4_wvtmh"]
 [ext_resource type="Script" uid="uid://dn7vuy63g0k1v" path="res://entities/characters/player/aim_pivot.gd" id="5_7thud"]
 [ext_resource type="Script" uid="uid://csee2fwnnhut7" path="res://entities/characters/player/equip_manager.gd" id="7_26q78"]
 [ext_resource type="Script" uid="uid://crnwlasf2kn54" path="res://entities/characters/player/interactor_area_2d.gd" id="7_j3ovn"]
+[ext_resource type="Texture2D" uid="uid://dlmk6tvc6dslx" path="res://entities/characters/player/images/caramelitogame_ladodireitohand.png" id="8_2jd2e"]
 [ext_resource type="Script" uid="uid://ch6nmrs1y42ix" path="res://entities/equip/equip_slot.gd" id="9_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://84rou32frl2b" path="res://entities/characters/health.tscn" id="10_sybl7"]
 [ext_resource type="Script" uid="uid://q1qht7ojqb3v" path="res://entities/characters/player/sound_emitters/step_sound_emitter.gd" id="11_5otfs"]
 [ext_resource type="Script" uid="uid://cntoj2c8qakvi" path="res://entities/characters/player/sound_emitters/hurt_sound_emitter.gd" id="12_0s3gd"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
-atlas = ExtResource("2_qiwj3")
-region = Rect2(16, 5, 16, 27)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4erlq"]
 radius = 5.0
@@ -90,12 +88,18 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_dvkp0"]
 radius = 21.095
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jd2e"]
+atlas = ExtResource("8_2jd2e")
+region = Rect2(445, 519, 134, 133)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 script = ExtResource("1_qiwj3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_26q78")
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_0s3gd")
+script = ExtResource("3_mnavw")
 
 [node name="MovementInput" type="Node" parent="." node_paths=PackedStringArray("characterBody2D")]
 script = ExtResource("3_bectd")
@@ -140,6 +144,11 @@ script = ExtResource("5_7thud")
 
 [node name="ItemPivot" type="Node2D" parent="AimPivot"]
 position = Vector2(12, 0)
+
+[node name="Hand" type="Sprite2D" parent="AimPivot"]
+position = Vector2(12, 0)
+scale = Vector2(0.03, 0.03)
+texture = SubResource("AtlasTexture_2jd2e")
 
 [node name="EquipManager" type="Node" parent="."]
 script = ExtResource("7_26q78")

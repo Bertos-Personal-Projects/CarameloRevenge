@@ -16,6 +16,7 @@ script = ExtResource("1_dvkp0")
 position = Vector2(-106, -144)
 scale = Vector2(5, 5)
 zoom = Vector2(3, 3)
+process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("2_b1q4w")
 target = NodePath("../Player")
@@ -61,10 +62,9 @@ theme_override_constants/margin_bottom = 25
 [node name="Control" type="Control" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
 
-[node name="HealthUI" parent="CanvasLayer/Control/MarginContainer/Control" node_paths=PackedStringArray("player") instance=ExtResource("4_iktyl")]
+[node name="HealthUI" parent="CanvasLayer/Control/MarginContainer/Control" instance=ExtResource("4_iktyl")]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 0.0
 grow_horizontal = 2
-player = NodePath("../../../../../Player")
