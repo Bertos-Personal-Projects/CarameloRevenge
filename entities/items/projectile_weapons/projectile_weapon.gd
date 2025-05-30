@@ -1,34 +1,54 @@
-extends Node2D
+class_name ProjectileWeapon extends Node2D
 
-var damage:int
-var texture:Texture2D
-@onready var sprite2D:Sprite2D = $Sprite2D
-@onready var firePos:Node2D = $FirePos
-@onready var projectile:PackedScene = preload("uid://5jocor68mxln")
-var collisionMask:int = 1
-var cooldown:float
-var in_cooldown:bool = true
-@export var timer:Timer
+#agression!!
+@export var _data: ProjectileWeaponData
+var _damage: int
+var _max_ammo: int
+var current_ammo: int
+@onready var firePos: Node2D = $FirePos
+@onready var projectile: PackedScene = preload("uid://5jocor68mxln")
+var collisionMask: int = 1
+
+#delay between shots
+var _shoots_delay_timer: Timer
+var _cooldown: float
+var _in_cooldown: bool = false
+
+#signal
+signal reloaded
+signal used
 
 func _ready() -> void:
-	timer.wait_time = cooldown
-	timer.timeout.connect(func(): in_cooldown=false)
-	timer.start()
-	sprite2D.texture = texture
+	_damage = _data.damage
+	_max_ammo = _data.max_ammo
+	_cooldown = _data.cooldown
+	_init_timer()
 
+
+func _init_timer():
+	_shoots_delay_timer = Timer.new()
+	_shoots_delay_timer.wait_time = _cooldown
+	_shoots_delay_timer.timeout.connect(func(): _in_cooldown = false)
+	add_child(_shoots_delay_timer)
 
 func use():
-	if in_cooldown:
-		return
-	_instantiate_projectile()
-	in_cooldown = true
-	timer.start()
+	if not _in_cooldown && current_ammo > 0:
+		_instantiate_projectile()
+		_in_cooldown = true
+		_shoots_delay_timer.start()
+		current_ammo -= 1
+		used.emit()
 
 func _instantiate_projectile():
 	var instance = projectile.instantiate() as Projectile
-	instance.damage = damage
+	instance.damage = _damage
 	instance.spwnRotation = global_rotation
 	instance.dir = global_rotation
 	instance.spwnPosition = firePos.global_position
 	instance.collisionMask = collisionMask
 	get_tree().current_scene.add_child(instance)
+
+#reset the current ammo to max ammo
+func reload():
+	current_ammo = _data.max_ammo
+	reloaded.emit()

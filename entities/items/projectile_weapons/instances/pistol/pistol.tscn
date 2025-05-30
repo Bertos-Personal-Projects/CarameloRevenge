@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://51rggk4bqmr3"]
+
+[ext_resource type="PackedScene" uid="uid://b04j5u8fr081r" path="res://entities/items/projectile_weapons/projectile_weapon.tscn" id="1_fdvu0"]
+[ext_resource type="Resource" uid="uid://bfqnjwqbbshie" path="res://entities/items/projectile_weapons/instances/pistol/pistol.tres" id="2_8lwx0"]
+[ext_resource type="Texture2D" uid="uid://blrlw0or6cphh" path="res://entities/items/projectile_weapons/instances/pistol/pistol.png" id="2_vko3v"]
+
+[node name="Pistol" instance=ExtResource("1_fdvu0")]
+_data = ExtResource("2_8lwx0")
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 0.0
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_vko3v")
+
+[node name="FirePos" parent="." index="1"]
+position = Vector2(8, -4)

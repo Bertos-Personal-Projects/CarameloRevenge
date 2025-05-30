@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponData" load_steps=3 format=3 uid="uid://b7touq5ggmjyi"]
+
+[ext_resource type="Texture2D" uid="uid://bw23wkxh14t52" path="res://entities/items/projectile_weapons/instances/rifle/shotgun.png" id="1_pwehs"]
+[ext_resource type="Script" uid="uid://jcxrxlfivtfl" path="res://entities/items/projectile_weapons/item_weapon_data.gd" id="1_v7i0k"]
+
+[resource]
+script = ExtResource("1_v7i0k")
+uid = "uid://bkewoemi45yn5"
+damage = 2
+cooldown = 1.0
+max_ammo = 6
+id = "rifle"
+name = "Rifle"
+icon = ExtResource("1_pwehs")
+metadata/_custom_type_script = "uid://jcxrxlfivtfl"

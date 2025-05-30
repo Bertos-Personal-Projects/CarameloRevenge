@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkewoemi45yn5"]
+
+[ext_resource type="PackedScene" uid="uid://b04j5u8fr081r" path="res://entities/items/projectile_weapons/projectile_weapon.tscn" id="1_pytdb"]
+[ext_resource type="Resource" uid="uid://b7touq5ggmjyi" path="res://entities/items/projectile_weapons/instances/rifle/rifle.tres" id="2_d8sy3"]
+[ext_resource type="Texture2D" uid="uid://bw23wkxh14t52" path="res://entities/items/projectile_weapons/instances/rifle/shotgun.png" id="2_wgs2a"]
+
+[node name="Weapon" instance=ExtResource("1_pytdb")]
+_data = ExtResource("2_d8sy3")
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 0.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_wgs2a")
+
+[node name="FirePos" parent="." index="1"]
+position = Vector2(21, -4)

@@ -7,10 +7,9 @@
 atlas = ExtResource("2_uk5g0")
 region = Rect2(224, 0, 16, 16)
 
-[node name="Weapon" type="Node2D" node_paths=PackedStringArray("timer")]
+[node name="Weapon" type="Node2D"]
 editor_description = "Weapon foward position is aways pointed to the left"
 script = ExtResource("1_2xplh")
-timer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 0.785397
@@ -18,5 +17,3 @@ texture = SubResource("AtlasTexture_5bp51")
 
 [node name="FirePos" type="Node2D" parent="."]
 position = Vector2(6, 0)
-
-[node name="Timer" type="Timer" parent="."]
