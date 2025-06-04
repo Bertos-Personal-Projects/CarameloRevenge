@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProjectileWeaponData" load_steps=3 format=3 uid="uid://bfqnjwqbbshie"]
+[gd_resource type="Resource" script_class="ProjectileWeaponData" load_steps=3 format=3 uid="uid://lkqrdcbnm82w"]
 
 [ext_resource type="Script" uid="uid://jcxrxlfivtfl" path="res://entities/items/projectile_weapons/item_weapon_data.gd" id="1_76dba"]
 [ext_resource type="Texture2D" uid="uid://blrlw0or6cphh" path="res://entities/items/projectile_weapons/instances/pistol/pistol.png" id="1_koc20"]
@@ -9,6 +9,7 @@ uid = "uid://51rggk4bqmr3"
 damage = 1
 cooldown = 0.5
 max_ammo = 11
+type = 1
 id = "pistol"
 name = "Pistol"
 icon = ExtResource("1_koc20")

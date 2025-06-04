@@ -61,7 +61,7 @@ func _getSlot(slotID: String) -> EquipSlot:
 		return slot # return slot
 	return null
 
-func equip(slotID: String, item: ProjectileWeaponData):
+func equip(slotID: String, item: ProjectileWeaponData) -> void:
 	var slot = _getSlot(slotID)
 	if slot != null:
 		if slot.instance != null:
@@ -70,14 +70,16 @@ func equip(slotID: String, item: ProjectileWeaponData):
 		slot.item = item
 		#instantiate the item packedscene
 		#and add it as child on pivot
-		var instance = load(item.uid).instantiate()
+		var packedscene = load(item.uid) as PackedScene
+		var instance = packedscene.instantiate()
 		instance.collisionMask = custom_collision_mask
 		slot.parent.add_child.call_deferred(instance)
 		slot.instance = instance
 		print(get_parent().name + " has equipped " + item.name)
 		equipped.emit(slot)
+		
 
-func unequip(slotID: String):
+func unequip(slotID: String) -> void:
 	var slot = _getSlot(slotID)
 	if slot:
 		var instance = item_packed_scene.instantiate() as Item

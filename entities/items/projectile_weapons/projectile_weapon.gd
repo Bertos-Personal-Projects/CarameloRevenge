@@ -1,13 +1,15 @@
 class_name ProjectileWeapon extends Node2D
 
-#agression!!
+
+#Data
 @export var _data: ProjectileWeaponData
 var _damage: int
 var _max_ammo: int
 var current_ammo: int
+var collisionMask: int = 1
+
 @onready var firePos: Node2D = $FirePos
 @onready var projectile: PackedScene = preload("uid://5jocor68mxln")
-var collisionMask: int = 1
 
 #delay between shots
 var _shoots_delay_timer: Timer
@@ -25,13 +27,13 @@ func _ready() -> void:
 	_init_timer()
 
 
-func _init_timer():
+func _init_timer() -> void:
 	_shoots_delay_timer = Timer.new()
 	_shoots_delay_timer.wait_time = _cooldown
 	_shoots_delay_timer.timeout.connect(func(): _in_cooldown = false)
 	add_child(_shoots_delay_timer)
 
-func use():
+func use() -> void:
 	if not _in_cooldown && current_ammo > 0:
 		_instantiate_projectile()
 		_in_cooldown = true
@@ -39,7 +41,7 @@ func use():
 		current_ammo -= 1
 		used.emit()
 
-func _instantiate_projectile():
+func _instantiate_projectile() -> void:
 	var instance = projectile.instantiate() as Projectile
 	instance.damage = _damage
 	instance.spwnRotation = global_rotation
@@ -49,6 +51,9 @@ func _instantiate_projectile():
 	get_tree().current_scene.add_child(instance)
 
 #reset the current ammo to max ammo
-func reload():
-	current_ammo = _data.max_ammo
+func reload() -> void:
+	if _data.magazine_reload:
+		current_ammo = _max_ammo
+	elif current_ammo <= _max_ammo:
+		current_ammo += 1
 	reloaded.emit()

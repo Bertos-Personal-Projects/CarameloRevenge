@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://iwsqyxewfu7t" path="res://commons/camera/camera_2d.gd" id="2_yxsbx"]
 [ext_resource type="Script" uid="uid://dtbcix6ijos0t" path="res://commons/camera/shake_effect.gd" id="3_076kq"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="4_ulq4c"]
-[ext_resource type="Resource" uid="uid://bfqnjwqbbshie" path="res://entities/items/projectile_weapons/instances/pistol/pistol.tres" id="5_uqa7i"]
-[ext_resource type="Resource" uid="uid://b7touq5ggmjyi" path="res://entities/items/projectile_weapons/instances/rifle/rifle.tres" id="6_a8u5f"]
-[ext_resource type="Script" uid="uid://b8cyna4fdq3qh" path="res://entities/items/projectile_weapons/ammo_counter_ui.gd" id="6_h2jtp"]
+[ext_resource type="Resource" uid="uid://lkqrdcbnm82w" path="res://entities/items/projectile_weapons/instances/pistol/pistol.tres" id="5_uqa7i"]
+[ext_resource type="Resource" uid="uid://q7k5ise4tlud" path="res://entities/items/projectile_weapons/instances/rifle/rifle.tres" id="6_a8u5f"]
+[ext_resource type="Script" path="res://entities/items/projectile_weapons/ammo_counter_ui.gd" id="6_h2jtp"]
 [ext_resource type="FontFile" uid="uid://b5qynx1232tqu" path="res://assets/fonts/Daydream.ttf" id="7_h2jtp"]
 [ext_resource type="Texture2D" uid="uid://bw23wkxh14t52" path="res://entities/items/projectile_weapons/instances/rifle/shotgun.png" id="8_a8u5f"]
 
@@ -18,7 +18,7 @@ font = ExtResource("7_h2jtp")
 [node name="Player" parent="." instance=ExtResource("1_s8bdy")]
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 script = ExtResource("2_yxsbx")
 target = NodePath("../Player")
 
@@ -27,7 +27,7 @@ script = ExtResource("3_076kq")
 metadata/_custom_type_script = "uid://dtbcix6ijos0t"
 
 [node name="Item" parent="." instance=ExtResource("4_ulq4c")]
-position = Vector2(17, -38)
+position = Vector2(18, -38)
 itemData = ExtResource("5_uqa7i")
 
 [node name="Item2" parent="." instance=ExtResource("4_ulq4c")]
