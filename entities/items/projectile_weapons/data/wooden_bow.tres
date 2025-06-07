@@ -13,6 +13,7 @@ uid = "uid://b04j5u8fr081r"
 damage = 2
 cooldown = 1.0
 max_ammo = 1
+magazine_reload = true
 id = "wooden_bow"
 name = "Wooden Bow"
 icon = SubResource("AtlasTexture_lmomk")

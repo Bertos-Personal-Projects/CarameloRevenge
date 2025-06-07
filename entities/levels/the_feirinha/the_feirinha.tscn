@@ -10,9 +10,9 @@
 [ext_resource type="Script" uid="uid://dtbcix6ijos0t" path="res://commons/camera/shake_effect.gd" id="5_xrwcm"]
 [ext_resource type="PackedScene" uid="uid://ce6dqcc35ig10" path="res://entities/characters/enemies/crazy_dog/crazy_dog.tscn" id="6_8d28p"]
 [ext_resource type="PackedScene" uid="uid://bqg1tuwgusvc2" path="res://entities/items/item.tscn" id="8_b6khs"]
-[ext_resource type="Resource" uid="uid://cqxh7qavr5dd8" path="res://entities/items/projectile_weapons/data/wooden_bow.tres" id="9_ab0rd"]
+[ext_resource type="PackedScene" uid="uid://b7g3au0cjqlv5" path="res://entities/characters/enemies/orange_cat/orange_cat.tscn" id="10_ojpus"]
+[ext_resource type="Resource" uid="uid://lkqrdcbnm82w" path="res://entities/items/projectile_weapons/instances/pistol/pistol.tres" id="11_qjj5b"]
 [ext_resource type="PackedScene" uid="uid://w46rt74u1qc2" path="res://entities/ui/game_over/game_over.tscn" id="11_skm2o"]
-[ext_resource type="Theme" uid="uid://drib477dub3xk" path="res://assets/themes/hud.tres" id="12_ojpus"]
 [ext_resource type="PackedScene" uid="uid://c6ivgk5asmrxa" path="res://entities/ui/hud.tscn" id="12_qjj5b"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8d28p"]
@@ -892,14 +892,21 @@ position = Vector2(-9, -79)
 script = ExtResource("4_2db8p")
 metadata/_custom_type_script = "uid://cuvwto1xhh3qp"
 
-[node name="WaveSpawner" type="Node" parent="WaveManager"]
+[node name="Wave1_CrazyDog" type="Node" parent="WaveManager"]
 script = ExtResource("4_7s2d2")
 _enemies_packed_scenes = ExtResource("6_8d28p")
+_max_enemies = 4
+metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
+
+[node name="Wave1_OrangeCat" type="Node" parent="WaveManager"]
+script = ExtResource("4_7s2d2")
+_enemies_packed_scenes = ExtResource("10_ojpus")
+_max_enemies = 5
 metadata/_custom_type_script = "uid://ch4xfs6ybmbhh"
 
 [node name="Item" parent="." instance=ExtResource("8_b6khs")]
 position = Vector2(10, -40)
-itemData = ExtResource("9_ab0rd")
+itemData = ExtResource("11_qjj5b")
 
 [node name="Control" type="Control" parent="Item"]
 z_index = 30
@@ -909,7 +916,6 @@ offset_left = -42.0
 offset_top = -8.0
 offset_right = -2.0
 offset_bottom = 32.0
-theme = ExtResource("12_ojpus")
 
 [node name="Label" type="Label" parent="Item/Control"]
 layout_mode = 0
@@ -922,6 +928,7 @@ text = "Press E to pickp"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("12_qjj5b")]
+theme = null
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("11_skm2o")]
 visible = false

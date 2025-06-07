@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemWeaponData" load_steps=4 format=3 uid="uid://dqq7sqbewgobg"]
+[gd_resource type="Resource" script_class="ProjectileWeaponData" load_steps=4 format=3 uid="uid://dqq7sqbewgobg"]
 
 [ext_resource type="Texture2D" uid="uid://jomsrkshrqe" path="res://entities/items/RPG Weapons Dark Outline.png" id="1_ycne4"]
 [ext_resource type="Script" uid="uid://jcxrxlfivtfl" path="res://entities/items/projectile_weapons/item_weapon_data.gd" id="2_hi1jq"]
@@ -12,6 +12,8 @@ script = ExtResource("2_hi1jq")
 uid = "uid://b04j5u8fr081r"
 damage = 4
 cooldown = 1.0
+max_ammo = 1
+magazine_reload = true
 id = "super_bow"
 name = "Super Bow"
 icon = SubResource("AtlasTexture_7ywyr")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ce6dqcc35ig10"]
+[gd_scene load_steps=32 format=3 uid="uid://ce6dqcc35ig10"]
 
 [ext_resource type="Script" uid="uid://bssf84hoclg0p" path="res://entities/characters/enemies/enemy.gd" id="1_fcsto"]
 [ext_resource type="Texture2D" uid="uid://6l1na1tifksv" path="res://entities/characters/enemies/crazy_dog/D_Idle.png" id="1_w24tc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://baaaimf7uopbu" path="res://entities/characters/enemies/ai/conditions/is_player_too_close.gd" id="6_jla03"]
 [ext_resource type="Script" uid="uid://bv1pxupp7tk1g" path="res://entities/characters/enemies/ai/conditions/is_player_not_too_close.gd" id="6_wfqk7"]
 [ext_resource type="Script" uid="uid://d1bq5pvmgi4tu" path="res://entities/characters/enemies/ai/actions/chase.gd" id="7_wfqk7"]
+[ext_resource type="Resource" uid="uid://q7k5ise4tlud" path="res://entities/items/projectile_weapons/instances/rifle/rifle.tres" id="9_mfrs2"]
 [ext_resource type="Script" uid="uid://nsqrv2jk7hbq" path="res://entities/characters/enemies/ai/actions/use_item.gd" id="11_t2qk6"]
 [ext_resource type="Script" uid="uid://b0mj4jgg538rl" path="res://entities/characters/enemies/ai/conditions/is_alive.gd" id="12_w2osj"]
 [ext_resource type="Script" uid="uid://b7r1ud50vcvlf" path="res://entities/equip/equip_manager.gd" id="13_fc81t"]
@@ -140,7 +141,7 @@ metadata/_custom_type_script = "uid://b7r1ud50vcvlf"
 script = ExtResource("5_t2qk6")
 id = "primary"
 parent = NodePath("../../AimPivot/ItemPivot")
-item = ExtResource("15_apvrq")
+item = ExtResource("9_mfrs2")
 metadata/_custom_type_script = "uid://ch6nmrs1y42ix"
 
 [node name="AimPivot" type="Node2D" parent="."]
@@ -158,7 +159,7 @@ characterBody = NodePath("..")
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_vgnu8")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@21832")
+blackboard = NodePath("@Node@30409")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://beblq5dfwgxdu"
 
