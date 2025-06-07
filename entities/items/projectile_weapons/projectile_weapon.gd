@@ -5,7 +5,7 @@ class_name ProjectileWeapon extends Node2D
 @export var _data: ProjectileWeaponData
 var _damage: int
 var _max_ammo: int
-var current_ammo: int
+var current_ammo: int = 0
 var collisionMask: int = 1
 
 @onready var firePos: Node2D = $FirePos
@@ -25,7 +25,6 @@ func _ready() -> void:
 	_max_ammo = _data.max_ammo
 	_cooldown = _data.cooldown
 	_init_timer()
-
 
 func _init_timer() -> void:
 	_shoots_delay_timer = Timer.new()
@@ -57,3 +56,6 @@ func reload() -> void:
 	elif current_ammo <= _max_ammo:
 		current_ammo += 1
 	reloaded.emit()
+
+func reset_ammo() -> void:
+	current_ammo = _max_ammo
