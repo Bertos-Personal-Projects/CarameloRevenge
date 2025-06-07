@@ -18,7 +18,7 @@ font = ExtResource("7_h2jtp")
 [node name="Player" parent="." instance=ExtResource("1_s8bdy")]
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-zoom = Vector2(3, 3)
+zoom = Vector2(3.5, 3.5)
 script = ExtResource("2_yxsbx")
 target = NodePath("../Player")
 
@@ -31,7 +31,7 @@ position = Vector2(18, -38)
 itemData = ExtResource("5_uqa7i")
 
 [node name="Item2" parent="." instance=ExtResource("4_ulq4c")]
-position = Vector2(-39, -38)
+position = Vector2(-16, -37)
 itemData = ExtResource("6_a8u5f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

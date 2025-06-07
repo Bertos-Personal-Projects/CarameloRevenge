@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clpsq7lbl8ecw" path="res://entities/items/item.gd" id="1_bbs1f"]
 [ext_resource type="Texture2D" uid="uid://jomsrkshrqe" path="res://entities/items/RPG Weapons Dark Outline.png" id="2_h1ip2"]
-[ext_resource type="Script" uid="uid://k8vlwn4wl28x" path="res://commons/interaction/interaction_area2D.gd" id="4_v10qo"]
+[ext_resource type="Script" uid="uid://dmcschvm7okmb" path="res://entities/items/interaction_area.gd" id="3_h1ip2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l3fek"]
 atlas = ExtResource("2_h1ip2")
@@ -14,14 +14,21 @@ radius = 6.66667
 [node name="Item" type="Node2D"]
 script = ExtResource("1_bbs1f")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(2, 2, 2, 1)
+scale = Vector2(0.15, 0.15)
 texture = SubResource("AtlasTexture_l3fek")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = SubResource("AtlasTexture_l3fek")
+
+[node name="InteractionArea" type="Area2D" parent="." node_paths=PackedStringArray("highlight")]
 collision_layer = 8
 collision_mask = 8
-script = ExtResource("4_v10qo")
+script = ExtResource("3_h1ip2")
+highlight = NodePath("../Highlight")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_43i6i")

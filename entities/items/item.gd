@@ -4,12 +4,15 @@ extends Node2D
 @export var itemData: ItemData
 @onready var interaction_area2D: InteractionArea2D = $InteractionArea
 @onready var sprite2D: Sprite2D = self.get_node('Sprite2D')
+@onready var highlight: Sprite2D = $Highlight
+
 signal picked_up()
 
 func _ready() -> void:
 	if itemData != null:
 		sprite2D.texture = self.itemData.icon
 		interaction_area2D.interacted.connect(_on_interacted)
+		highlight.texture = self.itemData.icon
 
 func _on_interacted(who: Node2D):
 	if itemData is ItemConsumableData && who.has_node("Health"):
